@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Đánh giá Dự án LGD</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sổ tay rà soát — dải đầu trang màu rừng thông, tab cố định, nội dung một cột 920px, sản phẩm dạng hồ sơ có mã quyển */
+:root{
+  --bg:#f5f7f4; --surface:#ffffff; --ink:#1b2620; --muted:#5b6b62; --line:#dde4de;
+  --pine:#1f5b45; --pine-soft:#e3efe8; --clay:#a5552b; --clay-soft:#f6e7dc;
+  --ok:#2c7a4b; --ok-soft:#e1f2e7; --warn:#a86a00; --warn-soft:#fbefd6; --bad:#b03a2e; --bad-soft:#f8e1de;
+  --head:#173f31; --head-ink:#eef5f0;
+  --f-display:"Lora",Georgia,"Times New Roman",serif;
+  --f-body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121815; --surface:#19211d; --ink:#e3ebe6; --muted:#97a69d; --line:#2b3631;
+  --pine:#6fc29c; --pine-soft:#1f3229; --clay:#e39a6f; --clay-soft:#3a2619;
+  --ok:#6fcf93; --ok-soft:#1b3326; --warn:#e7b04c; --warn-soft:#3a2d12; --bad:#f08a7d; --bad-soft:#3d1f1b;
+  --head:#0d2219; --head-ink:#e3efe8; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121815; --surface:#19211d; --ink:#e3ebe6; --muted:#97a69d; --line:#2b3631;
+  --pine:#6fc29c; --pine-soft:#1f3229; --clay:#e39a6f; --clay-soft:#3a2619;
+  --ok:#6fcf93; --ok-soft:#1b3326; --warn:#e7b04c; --warn-soft:#3a2d12; --bad:#f08a7d; --bad-soft:#3d1f1b;
+  --head:#0d2219; --head-ink:#e3efe8; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.25;margin:0}
+a{color:var(--pine)}
+:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
+
+/* Header */
+header.top{background:var(--head);color:var(--head-ink);position:relative;overflow:hidden}
+header.top .wrap{padding-block:32px 28px;position:relative}
+.contours{position:absolute;inset:0;opacity:.13;pointer-events:none}
+.eyebrow{font-size:12px;letter-spacing:.09em;text-transform:uppercase;opacity:.8;font-weight:600}
+header.top h1{font-size:clamp(24px,4.2vw,36px);margin:8px 0 12px;max-width:760px}
+header.top p{max-width:680px;margin:0;opacity:.88}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:18px;font-size:13px;opacity:.85}
+.meta b{font-weight:600}
+
+/* Tabs */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+nav.tabs button{font:600 14px var(--f-body);color:var(--muted);background:none;border:0;padding:14px 12px 12px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--pine);border-bottom-color:var(--pine)}
+nav.tabs button:hover{color:var(--ink)}
+
+main .wrap{padding-block:28px 64px}
+section.view{display:flex;flex-direction:column;gap:24px}
+.lead{color:var(--muted);max-width:68ch;margin:0}
+h2.sec{font-size:22px;display:flex;align-items:baseline;gap:10px}
+h2.sec .code{font:500 13px var(--f-mono);color:var(--clay)}
+
+/* Overview */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:760px){.split{grid-template-columns:1fr}}
+.col{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;min-width:0}
+.col h3{font-size:17px;display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.col.good .dot{background:var(--ok)} .col.fix .dot{background:var(--clay)}
+.pt{border-top:1px solid var(--line);padding:12px 0}
+.pt:first-of-type{border-top:0;padding-top:0}
+.pt summary{font-weight:600;cursor:pointer;list-style:none;display:flex;gap:8px;align-items:flex-start}
+.pt summary::-webkit-details-marker{display:none}
+.pt summary::before{content:"+";font:500 14px var(--f-mono);color:var(--muted);width:12px;flex:none;margin-top:2px}
+.pt[open] summary::before{content:"–"}
+.pt p{margin:8px 0 0 20px;color:var(--muted);font-size:14px}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.stat b{display:block;font:600 26px var(--f-display);color:var(--pine);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted)}
+
+/* Products */
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.tools input{flex:1 1 240px;min-width:0;font:14px var(--f-body);padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:500 13px var(--f-body);padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--pine);border-color:var(--pine);color:var(--surface)}
+.group-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:8px}
+
+.prod{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.prod > summary{list-style:none;cursor:pointer;padding:16px 18px;display:grid;grid-template-columns:auto 1fr auto;gap:4px 14px;align-items:center}
+.prod > summary::-webkit-details-marker{display:none}
+.prod .num{font:500 13px var(--f-mono);color:var(--clay);min-width:38px}
+.prod .name{font-weight:600;font-size:15.5px;min-width:0}
+.prod .tags{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.tag{font:500 11.5px var(--f-mono);padding:2px 8px;border-radius:5px;background:var(--pine-soft);color:var(--pine);white-space:nowrap}
+.tag.q{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.verdict{grid-column:2 / -1;font-size:13px;color:var(--muted)}
+.verdict i{font-style:normal;font-weight:600}
+.v-ok{color:var(--ok)} .v-mid{color:var(--warn)} .v-low{color:var(--bad)}
+@media (max-width:560px){.prod > summary{grid-template-columns:auto 1fr}.prod .tags{grid-column:2;justify-content:flex-start}}
+.prod[open] > summary{border-bottom:1px solid var(--line)}
+.pbody{padding:6px 18px 18px;display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+@media (max-width:760px){.pbody{grid-template-columns:1fr}}
+.blk{padding-top:14px;min-width:0}
+.blk.full{grid-column:1/-1}
+.blk h4{margin:0 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.blk ul{margin:0;padding-left:18px}
+.blk li{margin:3px 0;font-size:14px}
+.blk p{margin:0;font-size:14px}
+.empty{color:var(--muted);font-style:italic}
+.props{list-style:none;padding:0!important;display:flex;flex-direction:column;gap:6px}
+.props li{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border-radius:7px;background:var(--clay-soft);margin:0!important}
+.props li.err{background:var(--bad-soft)}
+.props .k{font:600 11px var(--f-mono);color:var(--clay);padding-top:3px;flex:none;min-width:52px}
+.props li.err .k{color:var(--bad)}
+mark{background:var(--warn-soft);color:inherit;border-radius:2px}
+.uc{font-family:var(--f-mono);font-size:12.5px}
+
+/* Matrix */
+.tablebox{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{font-size:11.5px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;background:var(--bg);position:sticky;top:0}
+.mx td.c{text-align:center;width:72px}
+.mx th.c{text-align:center}
+.mx td:first-child{min-width:230px}
+.cell{display:inline-block;width:18px;height:18px;border-radius:4px;background:var(--clay)}
+.cell.none{background:transparent;border:1px dashed var(--line)}
+.mx tr:hover td{background:var(--pine-soft)}
+.sum td{font-weight:600;background:var(--bg)}
+.legend{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:13px;color:var(--muted)}
+.legend b{font-family:var(--f-mono);color:var(--clay);margin-right:4px}
+
+/* Tracker */
+.progress{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 18px;flex-wrap:wrap}
+.bar{flex:1 1 200px;height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--pine);width:0;transition:width .3s}
+.progress b{font-variant-numeric:tabular-nums}
+.tr-prod{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+.tr-prod h3{font:600 15px var(--f-body);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.tr-prod h3 small{font:500 12px var(--f-mono);color:var(--muted)}
+.tr-item{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.tr-item:first-of-type{border-top:0}
+.tr-item input{margin-top:4px;width:16px;height:16px;accent-color:var(--pine);flex:none}
+.tr-item.done span{color:var(--muted);text-decoration:line-through}
+.btn{font:600 13px var(--f-body);padding:8px 14px;border-radius:7px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--pine)}
+.note{font-size:13px;color:var(--muted)}
+footer{border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer .wrap{padding-block:20px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <svg class="contours" viewBox="0 0 800 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="1.2">
+      <path d="M520 130c40-60 140-70 190-20s30 120-40 140-190 0-150-120z"/>
+      <path d="M555 135c30-40 105-48 140-12s20 85-30 98-140 0-110-86z"/>
+      <path d="M590 140c20-24 70-28 92-6s12 52-20 60-92 0-72-54z"/>
+      <path d="M622 144c10-12 36-14 46-2s6 26-10 30-46 0-36-28z"/>
+      <path d="M-20 220c120-40 260-10 380-40s220-90 460-60"/>
+      <path d="M-20 250c140-30 280 0 400-30s240-80 440-50"/>
+      <path d="M-20 190c110-50 240-30 360-60s200-100 470-80"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow">Ban CLSP · Đánh giá hồ sơ thiết kế</div>
+    <h1>Dự án Xây dựng hệ thống CSDL không gian địa lý dùng chung tỉnh Lâm Đồng</h1>
+    <p>Kết quả rà soát 10 quyển hồ sơ (Quyển 2.1 đến 2.10), gồm 23 phần mềm. Mỗi phần mềm được xem theo bốn mặt: căn cứ pháp lý, nghiệp vụ chính, lợi ích cho khách hàng và đề xuất điều chỉnh.</p>
+    <div class="meta"><span><b>Bản:</b> 14/10/2026 (Final)</span><span><b>Đơn vị chủ trì:</b> GEOIT, NNS, MDS, LDG, TT SI, DGS</span><span><b>Căn cứ dự án:</b> QĐ 2552/QĐ-UBND ngày 15/12/2025</span></div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Các phần">
+  <div class="wrap" role="tablist">
+    <button role="tab" data-v="tongquan" aria-selected="true">I. Tổng quan</button>
+    <button role="tab" data-v="chitiet" aria-selected="false">II. Chi tiết sản phẩm</button>
+    <button role="tab" data-v="matran" aria-selected="false">Ma trận vấn đề</button>
+    <button role="tab" data-v="theodoi" aria-selected="false">Theo dõi đề xuất</button>
+  </div>
+</nav>
+
+<main><div class="wrap">
+
+<section class="view" id="v-tongquan">
+  <div class="stats" id="stats"></div>
+  <p class="lead">Các hệ thống đều đúng nhiệm vụ và hình thành được CSDL chuyên ngành trên nền bản đồ. Vấn đề chung là nhiều phần mềm mới dừng ở nhập liệu và hiển thị, chưa có luồng cảnh báo, giao việc, theo dõi kết quả; liên thông với Trung ương và chất lượng mô tả UC cần rà soát trước nghiệm thu.</p>
+  <div class="split">
+    <div class="col good"><h3><span class="dot"></span>Điểm đạt được</h3><div id="good"></div></div>
+    <div class="col fix"><h3><span class="dot"></span>Điểm đề xuất rà soát, bổ sung</h3><div id="fix"></div></div>
+  </div>
+</section>
+
+<section class="view" id="v-chitiet" hidden>
+  <div class="tools">
+    <label for="q" class="note" hidden>Tìm kiếm</label>
+    <input id="q" type="search" placeholder="Tìm theo tên phần mềm, UC, văn bản…">
+    <div class="chips" id="units"></div>
+  </div>
+  <div class="tools"><button class="btn" id="openAll">Mở tất cả</button><button class="btn" id="closeAll">Thu gọn</button><span class="note" id="countNote"></span></div>
+  <div id="prods" style="display:flex;flex-direction:column;gap:10px"></div>
+</section>
+
+<section class="view" id="v-matran" hidden>
+  <h2 class="sec">Ma trận vấn đề theo phần mềm</h2>
+  <p class="lead">Bảy nhóm vấn đề ở Phần I, đối chiếu với từng phần mềm được nêu tên trong đánh giá. Hàng cuối đếm số phần mềm mắc mỗi nhóm.</p>
+  <div class="legend" id="legend"></div>
+  <div class="tablebox"><table class="mx" id="mx"></table></div>
+</section>
+
+<section class="view" id="v-theodoi" hidden>
+  <h2 class="sec">Theo dõi tiếp thu đề xuất</h2>
+  <p class="lead">Tích vào ô khi đơn vị đã tiếp thu, chỉnh sửa hồ sơ. Trạng thái lưu riêng trên trình duyệt của từng người.</p>
+  <div class="progress"><b id="prgTxt">0/0</b><div class="bar"><i id="prgBar"></i></div><button class="btn" id="reset">Xóa đánh dấu</button></div>
+  <div id="tracker" style="display:flex;flex-direction:column;gap:10px"></div>
+</section>
+
+</div></main>
+<footer><div class="wrap">Nguồn: Ban_CLSP_DanhGia_DuAn_LGD_14102026_Final.docx · Ban Chiến lược sản phẩm, VNPT IT</div></footer>
+
+<script>
+const GOOD=[
+ ["Đúng nhiệm vụ, đúng định hướng","Các hệ thống bám chức năng quản lý nhà nước của đơn vị sử dụng. CSDL không gian dùng chung tập hợp dữ liệu 14 ngành, quy hoạch các cấp và bản đồ nền, có quy trình kho thô → chuẩn hóa → biên tập → công bố và chia sẻ theo 4 nhóm dữ liệu. Du lịch, Y tế (HOC), KCN được đánh giá đúng nhiệm vụ, có giá trị."],
+ ["Hình thành CSDL chuyên ngành tập trung, khai thác trên bản đồ số","Hầu hết phần mềm gom dữ liệu chuyên ngành về một nơi, chuẩn hóa theo danh mục, tra cứu và thống kê trên nền GIS thay cho hồ sơ, bảng tính rời: KH&CN, Nông nghiệp và Môi trường, Quy hoạch xây dựng, Du lịch, Y tế, KCN."],
+ ["Có định hướng liên thông","Kết nối qua LGSP, cấp số liệu cho IOC, đồng bộ với Trung ương: Quy hoạch xây dựng đồng bộ CSDL TW có giám sát lỗi; Du lịch đồng bộ 30 bộ dữ liệu lên Bộ VHTTDL; HOC đẩy số liệu lên hệ thống báo cáo tỉnh; Kho hồ sơ đất đai và Đất tổ chức liên thông iLIS."],
+ ["Một số phần mềm có nghiệp vụ chuyên sâu, giá trị rõ","Khoáng sản giám sát khai thác bằng ảnh vệ tinh; Kho hồ sơ đất đai quản lý trọn vòng đời (kiểm kê QR, mượn trả, tiêu hủy); Đất tổ chức theo dõi chu kỳ đơn giá thuê; Tra cứu quy hoạch đến từng thửa; Thiên tai cảnh báo đa kênh; SSO hỗ trợ VNeID. Doanh nghiệp đã tham gia ở Tài nguyên nước (báo cáo định kỳ) và Quy hoạch xây dựng (nhà thầu duy tu)."]
+];
+const FIX=[
+ ["A","Vẫn chủ yếu nhập liệu và hiển thị lại","Toàn bộ UC tạo lập của Trồng trọt (70/70), Thủy sản (100/100), Thủy lợi (44/44), Chăn nuôi (154/154) là tải mẫu/import. KCN phần lớn do cán bộ nhập hoặc doanh nghiệp tự khai. Nhiều dashboard chưa so sánh kế hoạch, chưa có quy tắc cảnh báo."],
+ ["B","Thiếu luồng khép kín cảnh báo – giao việc – theo dõi","Xử lý vi phạm ở Tài nguyên nước dừng ở bước phê duyệt; Quy hoạch xây dựng chưa có biên bản, quyết định xử phạt, theo dõi khắc phục; Tra cứu quy hoạch chưa xử lý phản ánh; bốn phần mềm nông nghiệp chưa có luồng giao kiểm tra dịch hại, dịch bệnh, an toàn hồ đập."],
+ ["C","Liên thông với Bộ, Trung ương chưa cụ thể","Môi trường, Biển và hải đảo thiếu đồng bộ lên/xuống TW; bốn phần mềm nông nghiệp chưa rõ nguồn dữ liệu Bộ; tỉnh tự tạo dữ liệu cấp TW (QH không gian biển quốc gia, Bảo vật quốc gia, NSND/NSƯT); HOC chưa kết nối Bộ Y tế, BHXH, chưa hỗ trợ HL7 FHIR."],
+ ["D","Căn cứ pháp lý và khung kiến trúc chưa cập nhật","KH&CN cần Luật KH&CN và ĐMST 2025, Luật GDĐT 2023, Luật BVDLCN; Du lịch chưa dẫn NĐ 277/2026; HOC ghi sai số hiệu QĐ 2146/QĐ-BYT, thiếu QĐ 2113; Công dân số, SSO chưa viện dẫn Đề án 06, Luật GDĐT 2023, NĐ 69/2024; KCN chưa có văn bản giao nhiệm vụ. Chưa đối chiếu định hướng lấy dữ liệu làm trung tâm, AI-first."],
+ ["E","Người dân, doanh nghiệp chưa được khai thác đúng mức","Tờ khai phí nước thải, khí thải và báo cáo khoáng sản do chuyên viên nhập thay. Chưa có kênh người dân phản ánh ô nhiễm, vi phạm. App Công dân số chưa có VNeID, thanh toán, tiện ích, AI."],
+ ["F","Chất lượng hồ sơ ảnh hưởng nghiệm thu","Quy tắc kiểm tra dữ liệu hợp lệ chưa cụ thể; UC mô tả chung chung, sao chép biểu đồ (Khoáng sản UC 86–87, 93–94); Trồng trọt 136/140 UC lỗi gán tên biểu đồ; Quy hoạch xây dựng UC sai nội dung, thiếu tác nhân; HOC 60 chức năng ghi nhầm đối tượng; số UC Hệ thống phân tích lệch giữa thuyết minh và phụ lục; KCN Phần 1 – Phần 2 chưa gắn kết."],
+ ["G","Trùng lặp và không thống nhất giữa các phần mềm","Quản trị người dùng riêng trùng Phần mềm quản trị tập trung; tên Phần mềm cảnh báo cháy rừng không khớp chức năng; thuyết minh chung còn chức năng đã bỏ ở Thiên tai; nội dung AI ở TKCS chưa có UC (KH&CN) hoặc chưa có (Công dân số, SSO)."]
+];
+const CC4=["QĐ 2552/QĐ-UBND ngày 15/12/2025 (chủ trương đầu tư dự án)","QĐ 3203/QĐ-UBND ngày 30/6/2026 (danh mục gói thầu chỉ định)","QĐ 212/QĐ-SKHCN ngày 30/6/2026 (KHLCNT)","QĐ 221/QĐ-SKHCN ngày 6/7/2026 (Gói thầu 01: Tư vấn lập HSYC)"];
+
+// v: ok | mid | low ; f: flags A–G ; p: [text, isError]
+const P=[
+{id:"1",q:"2.1",u:"GEOIT",n:"Hệ thống cơ sở dữ liệu không gian địa lý dùng chung tỉnh Lâm Đồng",v:"ok",vt:"Đạt, không đề xuất điều chỉnh",f:"",
+ cc:["QĐ 2552/QĐ-UBND ngày 15/12/2025 phê duyệt chủ trương đầu tư dự án"],
+ nv:["Nền tảng dữ liệu không gian dùng chung: dữ liệu 14 ngành, quy hoạch các cấp, bản đồ nền trong một CSDL; quy trình kho thô → chuẩn hóa → biên tập → dự thảo → công bố","Chia sẻ có kiểm soát theo 4 nhóm: dùng chung, dữ liệu mở, GIS chỉ đạo điều hành, theo văn bản hoặc thu phí; mỗi nhóm có đăng ký, phê duyệt, thống kê khai thác"],
+ li:["Chính quyền: tập trung bản đồ nền, quy hoạch, dữ liệu 14 ngành và CSDL quốc gia, đồng bộ định kỳ để các ngành dùng chung","Biên tập dữ liệu thuộc tính, không gian, ảnh viễn thám và drone; chồng xếp lớp","Phát hiện sớm chồng lấn quy hoạch, giấy phép cấp sai, công trình sai quy hoạch qua giải đoán ảnh","Ước tính nhanh diện tích, chi phí GPMB; theo dõi biến động sử dụng đất","Người dân, DN: cổng dữ liệu mở, đăng ký khai thác dữ liệu; gửi và theo dõi phản ánh đất đai, xây dựng, môi trường trên điện thoại"],
+ p:[]},
+{id:"2",q:"2.2",u:"TT SI",n:"Hệ thống CSDL Khoa học và Công nghệ",v:"mid",vt:"Có giá trị; tài chính KH&CN đáp ứng thấp",f:"DG",
+ cc:["Căn cứ trong quyển đã cũ, cần cập nhật:","Luật KH&CN và ĐMST 93/2025/QH15 (hiệu lực 1/10/2025)","Luật Giao dịch điện tử 20/2023/QH15","Luật Bảo vệ dữ liệu cá nhân 2025 (hiệu lực 1/1/2026)"],
+ nv:["Quản trị hệ thống, dữ liệu dùng chung","Bưu chính, viễn thông, tần số: doanh nghiệp, giấy phép, hạ tầng trên bản đồ","Nhiệm vụ KH&CN: đề xuất, xét duyệt, thẩm định, giao, theo dõi, nghiệm thu, ứng dụng kết quả","Công nghệ và ĐMST: an toàn bức xạ, SHTT, DN KH&CN; cảnh báo giấy phép sắp hết hạn","Tiêu chuẩn, đo lường, chất lượng","Chuyển đổi số và chỉ tiêu ngành (DTI, CCHC)","Tài chính và dự án CNTT: dự toán, giải ngân, tiến độ","Bản đồ, liên thông SDI, IOC, hệ thống tỉnh và TW","Cổng thông tin công khai; Chatbot AI"],
+ li:["CSDL tập trung 12 nhóm lĩnh vực, 104 đối tượng quản lý; chuẩn hóa, truy vết","Theo dõi nhiệm vụ KH&CN, tài chính, tiến độ dự án CNTT; báo cáo cho Bộ, IOC","Người dân, DN tra cứu công khai, đề xuất nhiệm vụ, đăng ký chuyển giao công nghệ","Hạn chế: tài chính KH&CN và dự án CNTT chỉ nhập, theo dõi số liệu; chưa có quy trình lập – trình – phân bổ dự toán; Phòng Tài chính nhập thay chủ đầu tư"],
+ p:[["Làm rõ mức độ tin học hóa: Quỹ phát triển KH&CN; kế hoạch, dự toán, phân bổ ngân sách; QLNN về ATTT mạng; thanh tra, xử lý vi phạm; sáng kiến, giải thưởng"],["Mô tả chu trình tài chính: lập, thẩm định, phê duyệt, giao, điều chỉnh dự toán, theo dõi, quyết toán; phạm vi nhận dữ liệu từ phần mềm kế toán"],["Bảng ánh xạ nghiệp vụ → dữ liệu → hệ thống nguồn → đơn vị cập nhật → đơn vị sử dụng; cơ chế DN, tổ chức, cấp xã tự cung cấp, xác nhận dữ liệu"],["Đối chiếu mô hình khái niệm 20 thực thể với 104 đối tượng thuộc 12 nhóm CSDL",1],["149 UC chưa chứng minh bao phủ danh mục dữ liệu đã mở rộng; bổ sung UC, tác nhân, đầu vào/ra, quy tắc, ngoại lệ",1],["Chi tiết liên thông: dữ liệu trao đổi, mã định danh, tần suất, nguồn ưu tiên, xử lý xung đột; dữ liệu tái sử dụng ở bước nào của từng TTHC"],["Thuyết minh đối chiếu kiến trúc lấy dữ liệu làm trung tâm, AI-first"],["Thống nhất hệ tọa độ, mã EPSG, quy tắc chuyển đổi; nghiệm thu từng lớp dữ liệu không gian"],["AI: bổ sung UC truy vấn bằng ngôn ngữ tự nhiên gắn bản đồ, nguồn tri thức"],["Bổ sung quản lý Quỹ và luồng kế hoạch – dự toán – phân bổ; dự án CNTT do chủ đầu tư tự cập nhật, Sở giám sát"],["Quản lý HTTT theo cấp độ, kế hoạch bảo đảm, ứng cứu sự cố; kiểm tra, xử phạt, theo dõi khắc phục; kết nối cung – cầu công nghệ"],["Bổ sung hiện trạng, mục tiêu, chỉ số đo (nhiệm vụ đúng tiến độ, kết quả được ứng dụng, báo cáo tự động)"]]},
+{id:"3.1",q:"2.3 · PL 01.1",u:"GEOIT",g:"3",n:"Phần mềm hỗ trợ khai thác dữ liệu tài nguyên nước liên ngành",v:"mid",vt:"202 UC, 152 UC là đồng bộ và khai thác",f:"BEF",
+ cc:CC4,
+ nv:["Đồng bộ, khai thác: nguồn nước, lưu vực sông, hành lang bảo vệ, vùng cấm/hạn chế khai thác NDĐ; quy hoạch TNN; quan trắc; kiểm kê TNN","Rà soát báo cáo định kỳ và xử lý vi phạm hành chính (12 UC): chủ công trình nộp báo cáo, lãnh đạo phân công, chuyên viên kiểm tra và đề xuất xử lý","Tiền cấp quyền khai thác, sử dụng tài nguyên nước; báo cáo, thống kê, quản trị"],
+ li:["Ngoài đồng bộ, khai thác dữ liệu, đã có nghiệp vụ chuyên ngành; doanh nghiệp tham gia nộp báo cáo định kỳ"],
+ p:[["Xử lý vi phạm hành chính dừng ở bước nhận hồ sơ đã phê duyệt: bổ sung theo dõi thi hành quyết định nộp phạt"],["Tiền cấp quyền: bổ sung theo dõi tình trạng hiệu lực, hết hạn"],["Chưa nêu cụ thể thế nào là dữ liệu hợp lệ/không hợp lệ, khó nghiệm thu",1],["Giai đoạn sau: tiếp nhận phản ánh vi phạm, ô nhiễm nguồn nước từ người dân, DN"],["Giai đoạn sau: thông báo dữ liệu quan trắc, mức ô nhiễm, mực nước tới người dân, DN"]]},
+{id:"3.2",q:"2.3 · PL 01.2",u:"GEOIT",g:"3",n:"Phần mềm quản lý dữ liệu môi trường, đa dạng sinh học và biến đổi khí hậu",v:"low",vt:"Toàn bộ tạo lập bằng import",f:"ACE",
+ cc:CC4,
+ nv:["Chuyên viên tạo lập dữ liệu: kiểm soát ô nhiễm; chất lượng môi trường; quan trắc; thông tin môi trường; hồ sơ chất thải; đa dạng sinh học","Phân hệ nghiệp vụ: thu phí nước thải, thu phí khí thải"],
+ li:["Dữ liệu môi trường, ĐDSH vào một CSDL có không gian; chuẩn hóa theo file mẫu, kiểm lỗi khi import, tra cứu trên bản đồ","Theo dõi thu phí BVMT nước thải, khí thải; số hóa hồ sơ ĐDSH"],
+ p:[["Mọi dữ liệu tạo lập đều qua tải mẫu, import, duyệt: bổ sung nhập trực tiếp trên hệ thống"],["Dữ liệu trạm quan trắc đang tạo thủ công: nghiên cứu đồng bộ tự động"],["Tờ khai phí nước thải, khí thải do chuyên viên import: phân quyền cho doanh nghiệp tự khai"],["Thiếu đồng bộ dữ liệu lên TW và từ TW xuống"],["Bổ sung phân hệ người dân phản ánh ô nhiễm, xả thải và xử lý vi phạm"]]},
+{id:"3.3",q:"2.3 · PL 01.3",u:"GEOIT",g:"3",n:"Phần mềm hỗ trợ khai thác dữ liệu tài nguyên biển và hải đảo liên ngành",v:"mid",vt:"Có phân tích chồng lấn hỗ trợ giao khu vực biển",f:"C",
+ cc:CC4,
+ nv:["Tạo lập (thêm, sửa, import) 15/17 phân hệ: rác thải nhựa, ĐDSH và nguồn lợi thủy sản, khí tượng thủy văn biển, khai thác tài nguyên biển, hệ sinh thái, địa chất khoáng sản biển, QH không gian biển quốc gia, QH vùng bờ, địa hình đáy biển, hải đảo, ranh giới biển…","2 phân hệ còn lại: dashboard tổng hợp và báo cáo thống kê"],
+ li:["Phân tích chồng lấn khu vực khai thác, nhận chìm với vùng cấm (UC3–4); kết hợp ranh giới, hiện trạng giao biển (UC47–50) để thẩm định hồ sơ giao khu vực biển","Dashboard và báo cáo thống kê động"],
+ p:[["Phân hệ 11 và 17 là dữ liệu cấp quốc gia (QH không gian biển quốc gia, biên giới, vùng đặc quyền kinh tế, thềm lục địa) nhưng cho tỉnh tự tạo lập"],["Thiếu đồng bộ dữ liệu lên TW và từ TW xuống"],["Theo dõi quyết định giao, thời hạn, gia hạn, sửa đổi, trả lại, thu hồi; cảnh báo sắp hết hạn (căn cứ NĐ 11/2021/NĐ-CP)"]]},
+{id:"3.4",q:"2.3 · PL 01.4",u:"GEOIT",g:"3",n:"Phần mềm quản lý và giám sát hoạt động về lĩnh vực địa chất và khoáng sản",v:"ok",vt:"Giám sát chủ động bằng ảnh vệ tinh",f:"EFG",
+ cc:CC4,
+ nv:["Hồ sơ cấp phép: thăm dò, khai thác, tận thu, nhóm IV, chuyển nhượng","8 loại giấy phép và quyết định: tạo lập, phê duyệt, tra cứu","Giám sát hoạt động khoáng sản","Dữ liệu địa chất: điểm khảo sát, mặt cắt, lỗ khoan, hào, giếng, lò","Dữ liệu không gian; ứng dụng di động"],
+ li:["Số hóa trọn vòng đời giấy phép, từ hồ sơ đến đóng cửa mỏ, có bước phê duyệt","Tự tải ảnh vệ tinh, so sánh trước – sau, phát hiện khai thác ngoài ranh giới mỏ","Quản lý thuế, phí BVMT, quyết toán tiền cấp quyền","CSDL địa chất chuyên sâu; lãnh đạo tra cứu trên di động"],
+ p:[["UC 109–114, 116–117, 122–126 chỉ có 4 bước chung chung, không nêu nội dung nghiệp vụ",1],["DN tự nộp báo cáo hoạt động định kỳ, tự đăng ký phương tiện vận chuyển; thống kê mỏ chưa nộp và gửi nhắc (hiện chuyên viên import)"],["Biểu đồ UC 86, 87 sao chép của UC 85; UC 93, 94 sao chép của UC 92",1],["Lỗi chính tả, đánh số thứ tự, tiêu đề (mục A, B, E, F thiếu C, D)",1]]},
+{id:"3.5",q:"2.3 · PL 01.5",u:"NNS",g:"3",n:"Phần mềm lĩnh vực Trồng trọt và Bảo vệ thực vật",v:"low",vt:"140 UC: 70 tạo lập (đều import), 70 khai thác",f:"ABCF",
+ cc:["Luật Trồng trọt 31/2018/QH14","Luật Bảo vệ và kiểm dịch thực vật 41/2013/QH13","QĐ 4057/QĐ-BNNMT ngày 30/9/2025 (quy định kỹ thuật CSDL trồng trọt, BVTV)","QĐ 5445/QĐ-BNNMT ngày 17/12/2025 (Khung kiến trúc số Bộ NN&MT)"],
+ nv:["Chuyên viên tải mẫu, import; hệ thống kiểm tra, ghi nhận","Tra cứu theo địa bàn, đối tượng, thời gian; xuất báo cáo","Lưu giống, nhật ký sản xuất, vùng trồng, vật tư, sinh vật gây hại, hồ sơ kiểm dịch"],
+ li:["Có giá trị tập trung dữ liệu và tra cứu, chưa thể hiện giá trị điều hành","Chưa so sánh theo mùa vụ, xác định vùng dịch hại, theo dõi phòng trừ","Chưa rõ mã định danh thống nhất, nguồn Bộ/địa phương, trách nhiệm cập nhật","Hồ sơ kiểm dịch, vi phạm chỉ lưu và tra cứu; nguy cơ làm ngoài rồi nhập lại"],
+ p:[["Làm rõ nguồn Bộ/địa phương cho giống, thuốc BVTV, vùng trồng; kế thừa mã, đồng bộ thay cho nhập lại"],["Theo dõi vụ sản xuất: gắn nhật ký, diện tích, năng suất, vật tư với vùng trồng; so sánh kế hoạch"],["Giám sát dịch hại trên bản đồ: ngưỡng cảnh báo, giao kiểm tra/phòng trừ, theo dõi kết quả"],["Đối chiếu thuốc sử dụng với danh mục được phép/cấm; danh sách giấy chứng nhận sắp hết hạn"],["Truy xuất vùng trồng theo lô: mã vùng, chứng nhận, nhật ký, kiểm dịch"],["Tự tổng hợp báo cáo; chia sẻ vùng trồng, cơ sở hợp lệ qua kênh dùng chung"],["136/140 UC lỗi gán tên biểu đồ, trong đó 32 UC sai mô tả (VD UC 33, 34, 63, 64, 109, 110, 113–124, 127–140)",1]]},
+{id:"3.6",q:"2.3 · PL 01.6",u:"NNS",g:"3",n:"Phần mềm lĩnh vực thủy sản",v:"low",vt:"200 UC: 100 tạo lập (đều import), 100 khai thác",f:"ABC",
+ cc:["Luật Thủy sản 18/2017/QH14 và văn bản hợp nhất, sửa đổi","QĐ 4440/QĐ-BNNMT ngày 25/10/2025 (quy định kỹ thuật CSDL thủy sản, kiểm ngư)","VBHN 22/VBHN-BNNPTNT ngày 20/12/2022 (CSDL quốc gia về thủy sản)","QĐ 5445/QĐ-BNNMT"],
+ nv:["Tải mẫu, import; tra cứu, xuất báo cáo về cơ sở nuôi, tàu cá, đăng kiểm, giấy phép, cảng, nhật ký, sản lượng, kiểm ngư","Dữ liệu giám sát hành trình cũng tạo bằng import; chưa có luồng nhận vị trí liên tục, xử lý cảnh báo"],
+ li:["Tập trung hồ sơ nghề cá, chủ yếu nhập và tra cứu","Chưa có cảnh báo mất tín hiệu hành trình, tàu cần kiểm tra, vùng nuôi rủi ro","Chưa có chuỗi đối soát chuyến biển phục vụ chống khai thác IUU","Chưa cụ thể nguồn hành trình, dữ liệu Bộ/cảng; nguy cơ gom tệp thủ công"],
+ p:[["Xác định nguồn kết nối CSDL thủy sản của Bộ, giám sát hành trình, cảng cá; thống nhất mã tàu, cơ sở nuôi, chuyến biển"],["Làm rõ dữ liệu tự động, dữ liệu địa phương bổ sung và cách đối soát chênh lệch"],["Giám sát tàu cá: nhận hành trình, cảnh báo mất tín hiệu, vượt vùng; giao xác minh, ghi kết quả"],["Đối soát IUU theo chuyến biển: tàu, giấy phép, nhật ký, hành trình, cập/rời cảng, sản lượng, chứng nhận nguồn gốc"],["Quản lý vùng nuôi trên bản đồ: ngưỡng cảnh báo môi trường, dịch bệnh"],["Danh sách tàu hết hạn đăng kiểm/giấy phép, cơ sở vi phạm chưa khắc phục; giao đầu mối, hạn xử lý"],["Tự tổng hợp báo cáo sản lượng, tàu cá, vùng nuôi từ dữ liệu đã đối soát"]]},
+{id:"3.7",q:"2.3 · PL 01.7",u:"NNS",g:"3",n:"Phần mềm lĩnh vực thủy lợi",v:"low",vt:"88 UC: 44 tạo lập (đều import), 44 khai thác",f:"ABC",
+ cc:["Luật Thủy lợi 08/2017/QH14 và văn bản hợp nhất","QĐ 63/QĐ-BNNMT ngày 10/01/2026 (quy định kỹ thuật CSDL thủy lợi)","NĐ 67/2018/NĐ-CP sửa đổi bởi NĐ 40/2023/NĐ-CP","NĐ 114/2018/NĐ-CP về an toàn đập, hồ chứa; QĐ 5445/QĐ-BNNMT"],
+ nv:["Tải mẫu, import; tra cứu theo công trình, lưu vực, đơn vị, thời gian","Lưu kế hoạch/kết quả vận hành, tưới tiêu, an toàn đập, quan trắc, giấy phép, cấp nước, vùng thiếu nước"],
+ li:["Tập trung hồ sơ công trình và số liệu vận hành","Chưa cân đối nguồn nước với nhu cầu, chưa so sánh kế hoạch/thực hiện","Chưa có lịch bảo trì, kiểm tra đến hạn, theo dõi khắc phục","Có dữ liệu quan trắc nhưng chưa có cảnh báo tự động, giao xử lý"],
+ p:[["Thống nhất mã công trình, hồ/đập, kênh, vùng phục vụ; làm rõ nguồn dữ liệu Bộ, đơn vị vận hành"],["Giao đầu mối, tần suất cập nhật số liệu vận hành; gắn tọa độ, lưu vực"],["Cân đối nước theo mùa vụ: nhu cầu tưới theo vùng, đối chiếu nguồn, ưu tiên điều tiết"],["An toàn hồ đập: ngưỡng theo công trình, cảnh báo, giao kiểm tra; liên thông phần mềm thiên tai, tránh trùng"],["Bảo trì, kiểm định: liệt kê công trình đến hạn, hư hỏng chưa xử lý"],["Bảo vệ công trình: phạm vi bảo vệ trên bản đồ, giấy phép, vi phạm"],["Cấp nước nông thôn: hộ được cấp, vùng thiếu nước, chất lượng không đạt"]]},
+{id:"3.8",q:"2.3 · PL 01.8",u:"NNS",g:"3",n:"Phần mềm lĩnh vực chăn nuôi và Thú y",v:"low",vt:"308 UC: 154 tạo lập (đều import), 154 khai thác",f:"ABC",
+ cc:["Luật Chăn nuôi 32/2018/QH14","Luật Thú y 79/2015/QH13 và văn bản sửa đổi","QĐ 4999/QĐ-BNNMT ngày 25/11/2025 (quy định kỹ thuật CSDL chăn nuôi, thú y)","QĐ 5445/QĐ-BNNMT"],
+ nv:["Tải mẫu, import; tra cứu cơ sở, giống, thức ăn, tiêm phòng, dịch bệnh, kiểm dịch, thuốc, hành nghề thú y","Lưu số liệu môi trường, kiểm kê khí nhà kính; chưa tự tính phát thải, chưa cảnh báo dịch bệnh"],
+ li:["Phạm vi dữ liệu rộng, có giá trị tra cứu, tổng hợp","Chưa tính tỷ lệ tiêm theo đàn, khoanh vùng nguy cơ, theo dõi xử lý ổ dịch","Chưa cập nhật biến động đàn; chưa có danh sách giấy tờ sắp hết hạn","Chưa rõ dữ liệu Bộ, thú y cơ sở, tần suất cập nhật"],
+ p:[["Thống nhất mã cơ sở, đàn/lô, danh mục loài, bệnh, vắc xin; nguồn Bộ/địa phương, đầu mối cập nhật"],["Quản lý biến động đàn: sinh, chết, nhập, xuất; tự tổng hợp tổng đàn"],["Tiêm phòng, dịch bệnh: tỷ lệ tiêm theo đàn, ổ dịch trên bản đồ, giao xác minh/xử lý"],["Kiểm dịch, vận chuyển: liên kết cơ sở xuất, lô, xét nghiệm, giấy chứng nhận, nơi đến"],["Thuốc, hành nghề thú y: chứng chỉ sắp hết hạn, đối chiếu thuốc cho phép/cấm"],["Môi trường, phát thải: công thức, hệ số tự tính kiểm kê khí nhà kính; cảnh báo vượt ngưỡng"],["Tự lập báo cáo tổng đàn, tiêm phòng, dịch bệnh, kiểm dịch; chia sẻ cảnh báo theo vùng"]]},
+{id:"3.9",q:"2.3 · PL 01.9",u:"GEOIT",g:"3",n:"Phần mềm tra cứu thông tin quy hoạch",v:"ok",vt:"Tra cứu đến từng thửa, phát hiện sai khác hiện trạng",f:"BEF",
+ cc:CC4,
+ nv:["Tra cứu quy hoạch đến từng thửa theo 7 cách: CCCD, tên, GCN, tọa độ, địa chỉ, số tờ/số thửa, thửa liền kề; xuất thông tin","Dashboard thửa có quy hoạch khác hiện trạng kèm diện tích sai khác"],
+ li:["Lãnh đạo nắm tổng quan quy hoạch; so sánh hiện trạng – quy hoạch, tỷ lệ phần thửa trong từng loại quy hoạch","Cán bộ đất đai chồng lớp, chỉnh độ trong suốt; tự import shapefile thành lớp riêng","Kiểm soát phạm vi dữ liệu cán bộ và dữ liệu công khai"],
+ p:[["Cho người dân tra cứu quy hoạch đã công bố, phản ánh sai lệch quy hoạch; bổ sung nghiệp vụ xử lý phản ánh"],["Chưa nêu cụ thể thế nào là dữ liệu hợp lệ/không hợp lệ, khó nghiệm thu",1]]},
+{id:"3.10",q:"2.3 · PL 01.10",u:"GEOIT",g:"3",n:"Phần mềm quản lý Kho hồ sơ đất đai",v:"ok",vt:"Nghiệp vụ khá đầy đủ",f:"FG",
+ cc:["Pháp luật đất đai và lưu trữ; TT 09/2024/TT-BTNMT (CSDL quốc gia về đất đai)"].concat(CC4),
+ nv:["Số hóa, chuẩn hóa: chuyển đổi Excel cũ có ánh xạ, biên bản đối soát; nhận PDF hàng loạt, tự gắn thông tin theo tên tệp","Quản lý kho đến kho, dãy, kệ, ngăn, hộp; lịch sử di chuyển","Kiểm kê bằng QR, tự phát hiện thiếu, thừa, sai vị trí","Mượn trả có kiểm soát; tiêu hủy đúng quy trình","Liên thông iLIS; phân quyền, nhật ký, sao lưu"],
+ li:["Quản lý trọn vòng đời hồ sơ lưu trữ đất đai","Kết nối hai chiều với iLIS"],
+ p:[["Chưa nêu cụ thể thế nào là dữ liệu hợp lệ/không hợp lệ, khó nghiệm thu",1],["Quản lý người dùng có thể trùng Phần mềm quản trị hệ thống tập trung"]]},
+{id:"3.11",q:"2.3 · PL 01.11",u:"GEOIT",g:"3",n:"Phần mềm quản lý đất tổ chức",v:"ok",vt:"Theo dõi chu kỳ đơn giá thuê, thu hồi đất",f:"FG",
+ cc:["Pháp luật đất đai và lưu trữ; TT 09/2024/TT-BTNMT"].concat(CC4),
+ nv:["Quản lý đất tổ chức theo dự án: tổ chức, giai đoạn, hồ sơ pháp lý, thanh tra, ranh giới trên bản đồ","Kết nối hồ sơ địa chính; chuyển cấp GCN, biến động sang hệ thống đất đai","Theo dõi chu kỳ ổn định đơn giá đất thuê","Thu hồi đất, đền bù; dịch vụ đo vẽ có hóa đơn điện tử","Phân quyền đến từng dự án"],
+ li:["Báo cáo số dự án, hồ sơ theo tổ chức","Tỷ lệ hợp đồng đến hạn điều chỉnh đơn giá, xem danh sách từ biểu đồ","Liên thông hệ thống đất đai, xem phản hồi tiếp nhận","Ranh giới thu hồi, danh sách thửa trong ranh, kết quả từng đợt đền bù"],
+ p:[["Quản lý đất công ty nông, lâm nghiệp và đất sau sắp xếp cơ quan, đơn vị (Luật Đất đai 2024 Điều 181; NĐ 03/2025/NĐ-CP)"],["Chưa nêu cụ thể thế nào là dữ liệu hợp lệ/không hợp lệ, khó nghiệm thu",1]]},
+{id:"3.12",q:"2.3 · PL 01.12",u:"GEOIT",g:"3",n:"Phần mềm quản trị hệ thống tập trung",v:"ok",vt:"Một tài khoản cho 13 phần mềm Quyển 2.3",f:"G",
+ cc:CC4,
+ nv:["Người dùng, cơ cấu tổ chức tập trung; một tài khoản cho 13 phần mềm","Phân quyền chức năng đến menu, API; phân quyền dữ liệu theo lĩnh vực","12 danh mục dùng chung; SSO, nhật ký; API thông tin người dùng","Dashboard, bản đồ tổng hợp toàn Sở"],
+ li:["Khóa, điều chỉnh tài khoản một lần cho cả 13 phần mềm","Thống nhất danh mục dùng chung để đối chiếu số liệu liên lĩnh vực","Kiểm soát quyền, truy vết thao tác","Lãnh đạo xem tổng hợp toàn Sở ở một nơi"],
+ p:[["Khoáng sản, Kho hồ sơ đất đai, Đất tổ chức vẫn có quản lý người dùng riêng: quy định phần mềm này là đầu mối duy nhất"]]},
+{id:"3.13",q:"2.3 · PL 01.13",u:"GEOIT",g:"3",n:"Phần mềm giám sát cảnh báo cháy rừng",v:"mid",vt:"Tên không khớp chức năng",f:"G",
+ cc:CC4,
+ nv:["CSDL lâm nghiệp, kiểm lâm trên nền lô rừng","Giám sát mất rừng từ ảnh viễn thám bằng AI","Giao kiểm tra thực địa, phân công, theo dõi tiến độ","Thống kê, báo cáo theo chỉ tiêu; Chatbot"],
+ li:["Quản lý dữ liệu lâm nghiệp trên nền lô rừng","Phát hiện sớm vùng nghi mất rừng (GeoAI), theo dõi từ cảnh báo đến kết luận","Quản lý chủ rừng, lực lượng, dịch vụ môi trường rừng, giống, lâm sản"],
+ p:[["Chưa có chức năng cảnh báo cháy rừng: đề xuất đổi tên thành Phần mềm giám sát, quản lý rừng"]]},
+{id:"3.14",q:"2.3 · PL 01.14",u:"GEOIT",g:"3",n:"Phần mềm giám sát và cảnh báo sớm thiên tai",v:"ok",vt:"Cảnh báo đa kênh, điều phối ứng phó",f:"G",
+ cc:CC4,
+ nv:["Danh mục; TTHC; phòng ngừa: công trình, điểm sạt lở, phương án","Điều hành ứng phó; khắc phục hậu quả","Trực quan hóa, tiếp nhận thông tin người dân; ứng dụng mobile"],
+ li:["Lập phương án sơ tán, lực lượng, vật tư có phê duyệt","Đánh giá cấp độ rủi ro, kích hoạt phương án, giám sát sơ tán trên bản đồ","Nhận báo cáo hiện trường, gửi chỉ đạo ngược lại","Bản tin cảnh báo qua web, SMS, Zalo, loa; đẩy sang IOC và App Công dân số","Thống kê thiệt hại, điều phối cứu trợ; người dân nhận cảnh báo, gửi yêu cầu cứu trợ"],
+ p:[["Chức năng hiển thị diễn biến thiên tai trên bản đồ đã bỏ ở phụ lục nhưng thuyết minh chung Quyển 2.3 vẫn giữ",1]]},
+{id:"4",q:"2.4",u:"MDS",n:"Hệ thống quản trị dữ liệu quy hoạch, xây dựng",v:"mid",vt:"Phạm vi rộng; cấp phép và xử phạt còn mỏng",f:"BF",
+ cc:["QĐ 305/QĐ-BXD ngày 03/03/2026 ban hành Khung kiến trúc số Bộ Xây dựng, phiên bản 4.0"],
+ nv:["Quản trị kiến trúc dữ liệu; đồng bộ CSDL TW có lập lịch, cảnh báo lỗi","Bản đồ: quy hoạch, dự án, HTKT đô thị, nhà ở, giao thông, VLXD; 3D, BIM","Duy tu, tuần đường; chứng chỉ hành nghề; chương trình nhà ở","Lấy ý kiến, phản ánh; bãi đỗ xe thông minh; cấp phép, thẩm định","Báo cáo, dashboard; dịch vụ dữ liệu qua LGSP; phân tích điều hành trên bản đồ"],
+ li:["Dữ liệu ngành Xây dựng trên một nền bản đồ; đồng bộ TW có giám sát chất lượng","Lãnh đạo: bộ chỉ số, bản đồ nhiệt, điểm nóng vi phạm, phát hiện công trình không phép từ ảnh, cảnh báo chồng chéo","Chia sẻ qua 53 dịch vụ","Người dân tìm bãi đỗ xe, phản ánh; nhà thầu duy tu tự gửi báo cáo khối lượng"],
+ p:[["Phân hệ cấp phép, thẩm định có 4 UC chỉ tra cứu: bổ sung tiếp nhận hồ sơ, phân công thẩm định, kiểm tra phù hợp quy hoạch trên bản đồ, kết quả cấp phép; DN tự nộp, theo dõi"],["Đã phát hiện vi phạm: bổ sung lập biên bản, quyết định xử phạt, theo dõi khắc phục hoặc cưỡng chế"],["UC-527 mô tả và biểu đồ không đúng nghiệp vụ",1],["UC-006, 012, 018, 024, 030 chưa ghi tác nhân",1]]},
+{id:"5",q:"2.5",u:"MDS",n:"Hệ thống thông tin và quản lý dữ liệu du lịch tỉnh Lâm Đồng",v:"mid",vt:"Đúng nhiệm vụ, chủ yếu là kho nhập liệu",f:"ACD",
+ cc:["NĐ 277/2026/NĐ-CP ngày 09/07/2026 về Hạ tầng văn hóa số","QĐ 1495/QĐ-BVHTTDL ngày 26/06/2026 (Khung kiến trúc số, kiến trúc dữ liệu, từ điển dữ liệu dùng chung Bộ VHTTDL v1.0)"],
+ nv:["154 nhóm chức năng, 1.382 thao tác","Tạo lập dữ liệu ngành (~78 nhóm): nhập tay hoặc upload Excel (~185 thao tác), phê duyệt, phát hành công khai/bảo mật","43 danh mục dùng chung, 12 công cụ tích hợp","QLNN ở mức ghi nhận: thẩm định, xếp hạng cơ sở lưu trú, biên bản vi phạm, giấy phép lữ hành","Cổng tra cứu cộng đồng; 3 dashboard, 3 báo cáo","Kết nối: GIS dùng chung, 30 bộ dữ liệu lên Bộ, chỉ số cho IOC, kết quả TTHC từ Một cửa"],
+ li:["Giá trị thực ở 3 chức năng: đồng bộ lên Bộ, cấp chỉ số cho IOC, nhận kết quả TTHC","Chưa dẫn NĐ 277 (Điều 7); QĐ 1495 chưa có trong mục căn cứ","Chưa phân loại dữ liệu chủ/gốc/dùng chung/mở/tham chiếu; 30 bộ dữ liệu chưa ánh xạ với ~78 nhóm","Tỉnh tự tạo dữ liệu cấp TW (Bảo vật quốc gia, NSND/NSƯT) và 43 danh mục, dễ lệch mã với Bộ","Siêu dữ liệu thiếu mã định danh tài nguyên văn hóa số, quyền SHTT; di sản số chưa có bước xác thực"],
+ p:[["Đưa NĐ 277/2026/NĐ-CP vào mục 1.1 căn cứ; nêu vị trí hệ thống trong khung kiến trúc của Bộ và tỉnh"],["Bảng ánh xạ nhóm dữ liệu ↔ đối tượng dữ liệu chủ, trường cốt lõi trong từ điển 1495; loại dữ liệu, cấp tạo lập, có đồng bộ lên Kho quốc gia không"],["Bỏ phần tỉnh tạo dữ liệu cấp TW; dùng danh mục của Bộ và quốc gia"],["Siêu dữ liệu theo Điều 9 NĐ 277; xác thực, ký số dữ liệu di sản số hóa"],["Bổ sung hoặc giải trình lĩnh vực thiếu: gia đình, mỹ thuật – nhiếp ảnh – triển lãm, nhà hàng, tuyến du lịch, phát thanh – truyền hình"],["Phương án 3D/VR/AR, AI gắn thẻ, dữ liệu mở, kết nối thống kê ngành; ngoài phạm vi thì nêu lộ trình"],["Phương án cập nhật dữ liệu hằng năm; mục bảo vệ dữ liệu cá nhân"],["Cung cấp dữ liệu mở di sản, lễ hội, điểm đến qua App Công dân số và bản đồ dùng chung"]]},
+{id:"6",q:"2.6",u:"LDG",n:"Hệ thống dữ liệu ngành Y tế (HOC)",v:"mid",vt:"Đúng nhiệm vụ; 93% chỉ số vẫn nhập tay",f:"ACDF",
+ cc:["QĐ 982/QĐ-SYT ngày 28/7/2023 (Bộ chỉ số chỉ đạo điều hành ngành Y tế 2023–2025, định hướng 2030)","QĐ 1150/QĐ-SYT ngày 08/9/2023 (Đề án nền tảng số Y tế)","KH 190/KH-UBND ngày 07/01/2026, Phụ lục III (CSDL ngành y tế, 2026–2030)"],
+ nv:["283 chức năng; chính là IOC ngành Y tế theo QĐ 982","Thu dữ liệu từ HIS bệnh viện, BHXH, Bộ/ngành; biểu mẫu nhập theo kỳ","Tính, hiển thị 231 chỉ số","Đẩy số liệu lên hệ thống báo cáo tỉnh qua LGSP; danh mục cơ sở y tế lên bản đồ"],
+ li:["Lãnh đạo xem tập trung chỉ số; số liệu tự đẩy lên báo cáo tỉnh","Chưa so sánh kế hoạch giao (QĐ 982 yêu cầu cho 303/656 chỉ số), chưa cảnh báo","612/656 chỉ số (93%) do đơn vị tự nhập; chưa xác định kết nối Bộ, BHXH","Chưa đáp ứng QĐ 2146/QĐ-BYT và QĐ 2113/QĐ-BYT: chưa hỗ trợ HL7 FHIR, cổng dữ liệu dùng chung"],
+ p:[["Bổ sung QĐ 982, QĐ 1150, KH 190 vào căn cứ BCNCKT; nêu HOC kế thừa IOC ngành Y tế hiện có"],["Ghi đúng QĐ 2146/QĐ-BYT ngày 15/7/2026; bổ sung QĐ 2113/QĐ-BYT, QĐ 2439/QĐ-TTg",1],["Vị trí HOC trong khung kiến trúc tỉnh và Bộ Y tế; HL7 FHIR song song QĐ 130/QĐ-BYT; cổng dữ liệu dùng chung"],["60 chức năng ghi nhầm đối tượng là người dân và doanh nghiệp",1],["Tự lập báo cáo thống kê từ dữ liệu KCB theo QĐ 130, giảm 93% chỉ số nhập trực tiếp"],["Theo dõi thực hiện kế hoạch giao: so sánh, tô màu đạt/chậm, dự báo cuối năm (303 chỉ số)"],["Giám sát, cảnh báo dịch bệnh theo xã/phường, ổ dịch trên bản đồ, thông báo qua App Công dân số"],["Danh sách việc cần xử lý cho từng phòng: GCN ATTP/GPP/CCHN sắp hết hạn, cơ sở vi phạm, đơn vị chậm báo cáo"],["Dữ liệu chủ cơ sở y tế và nhân lực: một mã mỗi cơ sở, mỗi người hành nghề sau hợp nhất 3 tỉnh"],["Phân tích mạng lưới y tế trên bản đồ: khoảng cách đến trạm, bệnh viện; xã thiếu cơ sở, thiếu bác sĩ"],["Tra cứu công khai cơ sở KCB, tiêm chủng, nhà thuốc, ATTP qua App Công dân số"]]},
+{id:"7",q:"2.7",u:"MDS",n:"Hệ thống quản lý CSDL Khu công nghiệp và hỗ trợ xúc tiến đầu tư",v:"low",vt:"Phần mềm và tạo lập dữ liệu chưa gắn kết",f:"ADF",
+ cc:[],
+ nv:["Phần 1 – Phần mềm: 2 khối, 14 phân hệ, 4 nhóm người dùng. Khối xúc tiến đầu tư (GIS công khai, tin tức, hỗ trợ đầu tư); Khối quản lý nội bộ Ban QL (quy hoạch – xây dựng, lao động – môi trường, dự án, báo cáo, dashboard)","Kết nối LGSP cấp tỉnh, NGSP cấp quốc gia (hồ sơ còn ghi tên Bộ cũ: KH&ĐT, TN&MT, LĐTB&XH)","Phần 2 – Tạo lập: khai thác nền SDI qua WMS/WFS; 149 lớp (67 hiện trạng, 79 quy hoạch, 3 mốc giới), mỗi lớp ghi chung \"6 trường\"","Số hóa 459 bộ hồ sơ, 3.133 bản vẽ A0, 53.350 trang A4; GIS hóa 81,30 mảnh 1/2000"],
+ li:["Đúng chức năng Ban QL các KCN, có giá trị; mô hình dữ liệu chỉ đỡ khoảng một nửa chức năng","10 chức năng dashboard chưa có chỉ tiêu so sánh, chưa có quy tắc cảnh báo","Phân hệ báo cáo doanh nghiệp (25 chức năng) giảm việc nhiều nhất nhưng chưa có quy trình, xác thực, ký số","Phần 1 và Phần 2 dẫn chiếu vòng cho nhau, không phần nào có cấu trúc lớp thực tế","Có dữ liệu mà không có chức năng: mốc giới, công trình ngầm, năng lượng, san nền… Có chức năng mà không có dữ liệu: nhà ở công nhân, ảnh 360°, video, dữ liệu DN cho dashboard"],
+ p:[["Bổ sung căn cứ giao nhiệm vụ (văn bản UBND tỉnh, QĐ 2552); nêu kế thừa CSDL GIS KCN Bình Thuận cũ"],["Dashboard: danh mục chỉ số điều hành, chỉ tiêu so sánh, quy tắc cảnh báo (DN chậm báo cáo, dự án chậm, giấy phép sắp hết hạn, quan trắc vượt ngưỡng)"],["Báo cáo DN: chế độ báo cáo, mẫu biểu, xác thực tài khoản, ký số; quy chế nộp qua hệ thống"],["Công khai dữ liệu nhà ở công nhân, nhà ở xã hội qua cổng xúc tiến hoặc App Công dân số"],["Ma trận liên kết Phần 1 – Phần 2: mỗi lớp dữ liệu thuộc CSDL con nào, chức năng dùng, khối lượng tạo lập, nguồn, đơn vị cập nhật",1],["Khối CSDL có ở Phần 2 chưa có chức năng ở Phần 1: bổ sung chức năng hoặc loại khỏi khối lượng có giải trình",1],["Chức năng Phần 1 không có dữ liệu Phần 2: nêu nguồn đầu vào, bảo đảm dữ liệu sống",1]]},
+{id:"8",q:"2.8",u:"GEOIT",n:"Hệ thống tổng hợp, phân tích dữ liệu không gian địa lý",v:"mid",vt:"Số UC lệch giữa thuyết minh và phụ lục",f:"DF",
+ cc:[],
+ nv:["Cập nhật, chuẩn hóa kho thô; tích hợp, quản trị, chia sẻ dịch vụ","Tra cứu di động, cổng, hỏi đáp, dịch vụ dữ liệu có thu phí","Chuẩn hóa quy hoạch: .dgn, .dwg, .shp, .tab; chuyển WGS-84 về VN-2000; sửa lỗi topology","Cảnh báo chồng lấn quy hoạch; phát hiện và xử lý sử dụng đất sai mục đích"],
+ li:["Đầu mối khai thác, phân tích CSDL không gian dùng chung cho lãnh đạo các cấp","Phân tích y tế, giáo dục, nông nghiệp, môi trường, xây dựng, du lịch, KCN, văn hóa","Cấp dịch vụ cho IOC theo hướng IOC dựa trên dữ liệu không gian; đồng bộ CSDL Bộ, quốc gia"],
+ p:[["Số lượng UC trong thuyết minh lệch nhiều so với Phụ lục biểu đồ hoạt động",1]]},
+{id:"9",q:"2.9",u:"LDG",n:"Ứng dụng Công dân số (Mobile App)",v:"low",vt:"Góp ý định hướng chưa được tiếp thu",f:"DEG",
+ cc:["NĐ 85/2016/NĐ-CP và TT 12/2022/TT-BTTTT (ATTT theo cấp độ)","Luật 91/2025/QH15 Bảo vệ dữ liệu cá nhân; NĐ 356/2025/NĐ-CP","QĐ 742/QĐ-BTTTT; TT 39/2017, TT 13/2017/TT-BTTTT","Kiến trúc CQĐT Lâm Đồng 2.0"],
+ nv:["App cho người dân, DN; web quản trị cho cán bộ. Dự kiến 1,14 triệu người dân (30% dân số), 80.000 CBCCVC","9 quy trình: xác thực, tài khoản, phản ánh kiến nghị, tệp đính kèm, tin tức, thông báo cảnh báo, dịch vụ công, dashboard, nhật ký","Kết nối LGSP với SSO, Cổng TTĐT, IOC, GIS, Cổng DVC, lấy số thứ tự"],
+ li:["Đã tiếp thu tương tác hai chiều, khảo sát, IOC","Chưa có VNeID, thanh toán, tiện ích, AI: nguy cơ tải về rồi bỏ"],
+ p:[["Bổ sung căn cứ: QĐ 06/QĐ-TTg, Luật GDĐT 2023, NĐ 69/2024/NĐ-CP, NQ 57-NQ/TW"],["Bổ sung nội dung AI"],["Đăng nhập qua SSO liên kết VNeID; liên kết tài khoản, xử lý trùng danh tính"],["Thanh toán phí, lệ phí"],["Tiện ích: việc làm, tuyến xe buýt, lịch thu gom rác, quan trắc môi trường"]]},
+{id:"10",q:"2.10",u:"DGS",n:"Hệ thống xác thực định danh (SSO)",v:"mid",vt:"Thiếu cơ chế bắt buộc tích hợp và SLA",f:"DG",
+ cc:["NĐ 85/2016/NĐ-CP; TT 12/2022/TT-BTTTT","Luật 91/2025/QH15; NĐ 356/2025/NĐ-CP","QĐ 742/QĐ-BTTTT; TT 39/2017, TT 13/2017, TT 31/2017","NĐ 278/2025/NĐ-CP (kết nối, chia sẻ dữ liệu)","VB 2116/TCTTKĐA06-QLHC (VNeID); VB 273/BTTTT; VB 708/BTTTT-CATTT","OpenID Connect 1.0, OAuth 2.0, SAML2; Kiến trúc CQĐT Lâm Đồng 2.0"],
+ nv:["Một tài khoản cho CBCCVC đăng nhập mọi HTTT đã tích hợp; SAML2, OIDC, OAuth2, WS-Federation; qua LGSP và VDXP","Đăng nhập: mật khẩu, OTP (SMS, Email, TOTP), SIM ký số, USB ký số ~28 CA, VNeID","Quản trị tập trung tài khoản, nhóm, vai trò; đồng bộ LDAP, AD; cổng tài khoản cá nhân; thống kê truy cập"],
+ li:["Nếu không có quy định bắt buộc tích hợp và lộ trình, SSO thành thêm một hệ thống đăng nhập song song, không giải quyết tài khoản phân tán"],
+ p:[["Căn cứ: Đề án 06 chỉ nhắc qua; thiếu Luật GDĐT 2023, NĐ 69/2024/NĐ-CP (kiểm chứng hiệu lực), NQ 57-NQ/TW"],["Đề xuất Quy chế quản lý, vận hành SSO; bắt buộc mọi HTTT hiện có và xây mới tích hợp"],["Mục tiêu tự động hóa phê duyệt cấp quyền ở TKCS chưa có UC",1],["Bổ sung AI: phát hiện đăng nhập bất thường, hỗ trợ rà soát phân quyền"],["Cập nhật quy mô sau sáp nhập Đắk Nông, Bình Thuận, chính quyền 2 cấp; thuyết minh sizing 80.000 người dùng, 878 đồng thời"],["Bổ sung SLA, RTO, RPO và phương án đăng nhập dự phòng khi SSO gián đoạn"],["Bổ sung quy trình: đăng nhập VNeID, cấp/thu hồi quyền, đăng ký tích hợp ứng dụng mới, luân chuyển, nghỉ việc"]]}
+];
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+// Stats
+const totalProps=P.reduce((a,p)=>a+p.p.length,0), totalErr=P.reduce((a,p)=>a+p.p.filter(x=>x[1]).length,0);
+$("#stats").innerHTML=[[10,"quyển hồ sơ"],[P.length,"phần mềm được đánh giá"],[totalProps,"đề xuất điều chỉnh, bổ sung"],[totalErr,"lỗi hồ sơ cần sửa"]].map(([n,t])=>`<div class="stat"><b>${n}</b><span>${t}</span></div>`).join("");
+$("#good").innerHTML=GOOD.map(([h,b])=>`<details class="pt"><summary>${esc(h)}</summary><p>${esc(b)}</p></details>`).join("");
+$("#fix").innerHTML=FIX.map(([k,h,b])=>`<details class="pt"><summary><span class="uc" style="color:var(--clay)">${k}</span>&nbsp;${esc(h)}</summary><p>${esc(b)}</p></details>`).join("");
+
+// Products
+const units=["Tất cả",...new Set(P.map(p=>p.u))];
+let unit="Tất cả", q="";
+$("#units").innerHTML=units.map(u=>`<button class="chip" data-u="${u}" aria-pressed="${u===unit}">${u}</button>`).join("");
+$("#units").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;unit=b.dataset.u;document.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c===b));renderProds()});
+$("#q").addEventListener("input",e=>{q=e.target.value.trim().toLowerCase();renderProds()});
+const vclass={ok:"v-ok",mid:"v-mid",low:"v-low"}, vlabel={ok:"Đạt",mid:"Cần bổ sung",low:"Cần điều chỉnh nhiều"};
+function hl(s){s=esc(s);if(!q)return s;const i=s.toLowerCase().indexOf(esc(q).toLowerCase());return i<0?s:s.slice(0,i)+"<mark>"+s.slice(i,i+q.length)+"</mark>"+s.slice(i+q.length)}
+function list(a){return a.length?`<ul>${a.map(x=>`<li>${hl(x)}</li>`).join("")}</ul>`:`<p class="empty">Chưa có nội dung.</p>`}
+function renderProds(){
+  let html="",n=0,shownGroup=false;
+  P.forEach(p=>{
+    if(unit!=="Tất cả"&&p.u!==unit)return;
+    const hay=[p.n,p.q,p.u,...p.cc,...p.nv,...p.li,...p.p.map(x=>x[0])].join(" ").toLowerCase();
+    if(q&&!hay.includes(q))return;
+    n++;
+    if(p.g&&!shownGroup){shownGroup=true;html+=`<div class="group-label">3 · Hệ thống thông tin, CSDL ngành Nông nghiệp và Môi trường (14 phần mềm)</div>`}
+    if(!p.g&&shownGroup&&p.id==="4"){html+=`<div class="group-label">Các hệ thống khác</div>`;shownGroup=false}
+    html+=`<details class="prod" id="p-${p.id.replace('.','-')}"${q?" open":""}><summary>
+      <span class="num">${p.id}</span><span class="name">${hl(p.n)}</span>
+      <span class="tags"><span class="tag q">Q ${p.q}</span><span class="tag">${p.u}</span></span>
+      <span class="verdict"><i class="${vclass[p.v]}">${vlabel[p.v]}</i> · ${esc(p.vt)}${p.p.length?` · ${p.p.length} đề xuất`:""}</span></summary>
+      <div class="pbody">
+        <div class="blk"><h4>Căn cứ pháp lý</h4>${list(p.cc)}</div>
+        <div class="blk"><h4>Nghiệp vụ chính</h4>${list(p.nv)}</div>
+        <div class="blk full"><h4>Lợi ích, hạn chế với khách hàng</h4>${list(p.li)}</div>
+        <div class="blk full"><h4>Đề xuất điều chỉnh, bổ sung</h4>${p.p.length?`<ul class="props">${p.p.map((x,i)=>`<li class="${x[1]?"err":""}"><span class="k">${x[1]?"LỖI":"ĐX "+(i+1)}</span><span>${hl(x[0])}</span></li>`).join("")}</ul>`:`<p class="empty">Không đề xuất bổ sung, điều chỉnh.</p>`}</div>
+      </div></details>`;
+  });
+  $("#prods").innerHTML=html||`<p class="empty">Không có phần mềm khớp bộ lọc.</p>`;
+  $("#countNote").textContent=`Hiển thị ${n}/${P.length} phần mềm`;
+}
+renderProds();
+$("#openAll").onclick=()=>document.querySelectorAll(".prod").forEach(d=>d.open=true);
+$("#closeAll").onclick=()=>document.querySelectorAll(".prod").forEach(d=>d.open=false);
+
+// Matrix
+$("#legend").innerHTML=FIX.map(([k,h])=>`<span><b>${k}</b>${esc(h)}</span>`).join("");
+const keys=FIX.map(f=>f[0]);
+let mx=`<thead><tr><th>Phần mềm</th><th>Đơn vị</th>${keys.map(k=>`<th class="c">${k}</th>`).join("")}</tr></thead><tbody>`;
+P.forEach(p=>{mx+=`<tr><td><span class="uc" style="color:var(--clay)">${p.id}</span>&nbsp; ${esc(p.n)}</td><td class="uc">${p.u}</td>${keys.map(k=>`<td class="c">${p.f.includes(k)?`<span class="cell" title="${k}"></span>`:`<span class="cell none"></span>`}</td>`).join("")}</tr>`});
+mx+=`<tr class="sum"><td>Số phần mềm</td><td></td>${keys.map(k=>`<td class="c">${P.filter(p=>p.f.includes(k)).length}</td>`).join("")}</tr></tbody>`;
+$("#mx").innerHTML=mx;
+
+// Tracker
+let done=store.get("lgd-done")||{};
+function renderTracker(){
+  $("#tracker").innerHTML=P.filter(p=>p.p.length).map(p=>`<div class="tr-prod"><h3><span class="uc" style="color:var(--clay)">${p.id}</span>${esc(p.n)}<small>${p.u}</small></h3>
+   ${p.p.map((x,i)=>{const id=`t-${p.id}-${i}`;return `<label class="tr-item${done[id]?" done":""}"><input type="checkbox" id="${id}"${done[id]?" checked":""}><span>${x[1]?"<b>[Lỗi]</b> ":""}${esc(x[0])}</span></label>`}).join("")}</div>`).join("");
+  updProg();
+}
+function updProg(){const c=Object.values(done).filter(Boolean).length;$("#prgTxt").textContent=`Đã tiếp thu ${c}/${totalProps}`;$("#prgBar").style.width=(c/totalProps*100)+"%"}
+$("#tracker").addEventListener("change",e=>{const t=e.target;if(t.type!=="checkbox")return;done[t.id]=t.checked;store.set("lgd-done",done);t.parentElement.classList.toggle("done",t.checked);updProg()});
+$("#reset").onclick=()=>{done={};store.set("lgd-done",done);renderTracker()};
+renderTracker();
+
+// Tabs
+function show(v){document.querySelectorAll("[role=tab]").forEach(b=>b.setAttribute("aria-selected",b.dataset.v===v));document.querySelectorAll(".view").forEach(s=>s.hidden=s.id!=="v-"+v);try{history.replaceState(null,"","#"+v)}catch(e){}}
+document.querySelector("[role=tablist]").addEventListener("click",e=>{const b=e.target.closest("[role=tab]");if(b){show(b.dataset.v);window.scrollTo({top:0})}});
+const h=location.hash.slice(1);if(["tongquan","chitiet","matran","theodoi"].includes(h))show(h);
+</script>
+</body>
+</html>
