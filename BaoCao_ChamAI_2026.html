@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Báo cáo tổng hợp chấm bài dự thi Ứng dụng AI 2026 – Công đoàn VNPT IT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#fff; --ink:#1b2430; --muted:#5d6878; --line:#e3e7ec;
+    --brand:#0a5cc2; --brand-soft:#e8f0fb;
+    --green:#1d7a46; --green-soft:#e3f4ea;
+    --blue:#1f5fbf; --blue-soft:#e6eefb;
+    --amber:#9a6300; --amber-soft:#fdf3dc;
+    --red:#b3261e; --red-soft:#fbe7e5;
+    --c1:#0a5cc2; --c2:#5b8def; --c3:#2ba58a; --c4:#e3a72f; --c5:#9aa5b4;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 "Be Vietnam Pro",system-ui,sans-serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 20px 64px}
+  header{background:linear-gradient(135deg,#0a3f8a,#0a5cc2);color:#fff;border-radius:14px;padding:28px 30px}
+  header .org{font-size:13px;opacity:.85;letter-spacing:.04em;text-transform:uppercase}
+  header h1{margin:6px 0 8px;font-size:26px;line-height:1.3}
+  header p{margin:0;opacity:.9;font-size:14px}
+  h2{font-size:19px;margin:36px 0 12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .stat b{display:block;font-size:26px;line-height:1.2}
+  .stat span{color:var(--muted);font-size:13px}
+  .reco{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .reco .card{border-left:4px solid var(--green)}
+  .reco h3{margin:0 0 4px;font-size:16px}
+  .reco .score{float:right;font-weight:700;font-size:22px;color:var(--green)}
+  .muted{color:var(--muted)}
+  .small{font-size:13px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:14px}
+  th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  th{background:#f0f3f7;font-weight:600;font-size:13px;color:#3a4553}
+  tr:last-child td{border-bottom:none}
+  td.num,th.num{text-align:center;white-space:nowrap}
+  .pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+  .p-send{background:var(--green-soft);color:var(--green)}
+  .p-res{background:var(--blue-soft);color:var(--blue)}
+  .p-fix{background:var(--amber-soft);color:var(--amber)}
+  .p-no{background:var(--red-soft);color:var(--red)}
+  .bar{display:flex;height:12px;border-radius:6px;overflow:hidden;background:#eef1f5;min-width:180px}
+  .bar i{display:block;height:100%}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin:10px 0 0;font-size:12.5px;color:var(--muted)}
+  .legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+  .tot{font-weight:700;font-size:16px}
+  .entry{margin-bottom:14px}
+  .entry-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+  .entry h3{margin:0;font-size:16.5px}
+  .entry .unit{color:var(--muted);font-size:13px}
+  .entry .big{font-size:24px;font-weight:700;line-height:1}
+  .crit{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:12px 0}
+  .crit div{background:#f5f7fa;border-radius:8px;padding:8px 10px;font-size:12px;color:var(--muted)}
+  .crit b{display:block;font-size:17px;color:var(--ink)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .two h4{margin:6px 0 4px;font-size:13.5px}
+  ul{margin:4px 0 0;padding-left:20px}
+  li{margin:2px 0}
+  .ok{color:var(--green);font-weight:600}
+  .miss{color:var(--red);font-weight:600}
+  .part{color:var(--amber);font-weight:600}
+  .note{background:var(--brand-soft);border:1px solid #cddcf3;border-radius:12px;padding:14px 18px;font-size:14px}
+  footer{margin-top:40px;color:var(--muted);font-size:12.5px;text-align:center}
+  @media (max-width:760px){
+    .grid4{grid-template-columns:repeat(2,1fr)}
+    .reco,.two{grid-template-columns:1fr}
+    .crit{grid-template-columns:repeat(3,1fr)}
+    .hide-sm{display:none}
+    header h1{font-size:21px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="org">Công đoàn VNPT IT · Hội đồng thẩm định</div>
+  <h1>Báo cáo tổng hợp chấm bài dự thi<br>“Ứng dụng trí tuệ nhân tạo (AI) trong công việc” năm 2026</h1>
+  <p>Căn cứ: Kế hoạch 459/KH-CĐKHCN ngày 30/9/2026 · CV 879/CĐVNPT-TG ngày 21/10/2026 · CV 106/CV-CĐVNPTIT ngày 26/10/2026 · Lập ngày 20/11/2026</p>
+</header>
+
+<div class="grid4">
+  <div class="stat"><b>8</b><span>bài dự thi từ 6 đơn vị</span></div>
+  <div class="stat"><b>2</b><span>bài đề xuất gửi cấp Công đoàn KHCN</span></div>
+  <div class="stat"><b>1/8</b><span>bài nộp đủ 6 thành phần hồ sơ</span></div>
+  <div class="stat"><b>01/12</b><span>hạn nộp Công đoàn VNPT (còn 11 ngày)</span></div>
+</div>
+
+<h2>1. Đề xuất của Hội đồng</h2>
+<div class="reco">
+  <div class="card">
+    <span class="score">86</span>
+    <h3>VNPT SOC AI</h3>
+    <div class="muted small">Trung tâm An toàn thông tin · Chủ trì: Vũ Mạnh Kiểm</div>
+    <p class="small" style="margin:8px 0 0">Trợ lý AI phân loại, điều tra cảnh báo an ninh mạng trên đồ thị tri thức + LLM. Chạy production từ 01/10/2026; 100.000 cảnh báo đã xử lý; thời gian điều tra 30 → 5 phút/cảnh báo.</p>
+  </div>
+  <div class="card">
+    <span class="score">82</span>
+    <h3>Hệ thống quản lý nội bộ IDC</h3>
+    <div class="muted small">IDC Miền Nam – TT Hạ tầng IDC · Chủ trì: Nguyễn Quốc Vạn</div>
+    <p class="small" style="margin:8px 0 0">Người vận hành dùng AI tự xây hệ thống 13 phân hệ. 10 tháng vận hành, 41 người dùng, 3 site; giảm ~95% thời gian ở 3 nghiệp vụ, phát hiện rack vượt công suất thuê.</p>
+  </div>
+</div>
+<p class="small muted" style="margin:10px 2px 0">Dự phòng: <b>GOE</b> (TT SI, 81 điểm) và <b>VNPT AI-Guard</b> (TT ATTT, 80 điểm). Chọn SOC AI + IDC Miền Nam giúp bộ hồ sơ đi lên vừa mạnh về công nghệ AI, vừa mạnh về hiệu quả vận hành thực tế, và thuộc hai lĩnh vực khác nhau.</p>
+
+<h2>2. Bảng điểm đề xuất (thang 100)</h2>
+<table>
+  <thead>
+    <tr>
+      <th class="num">Hạng</th>
+      <th>Giải pháp</th>
+      <th class="num">Hiệu quả<br><span class="muted">/40</span></th>
+      <th class="num">Sáng tạo<br><span class="muted">/30</span></th>
+      <th class="num">Khả thi<br><span class="muted">/10</span></th>
+      <th class="num">Tác động<br><span class="muted">/10</span></th>
+      <th class="num">Hồ sơ<br><span class="muted">/10</span></th>
+      <th class="num">Tổng</th>
+      <th class="hide-sm">Cơ cấu điểm</th>
+      <th>Đề xuất</th>
+    </tr>
+  </thead>
+  <tbody id="score-body"></tbody>
+</table>
+<div class="legend">
+  <span style="--c:var(--c1)">Hiệu quả</span><span style="--c:var(--c2)">Sáng tạo & KHCN</span><span style="--c:var(--c3)">Khả thi & nhân rộng</span><span style="--c:var(--c4)">Tác động NLĐ</span><span style="--c:var(--c5)">Hồ sơ</span>
+</div>
+
+<h2>3. Nhận xét chi tiết từng bài</h2>
+<div id="entries"></div>
+
+<h2>4. Kiểm tra thành phần hồ sơ</h2>
+<table>
+  <thead>
+    <tr><th>Giải pháp</th><th>Báo cáo<br><span class="muted small">8–15 tr</span></th><th>Video<br><span class="muted small">3–8 ph</span></th><th>TL kỹ thuật / HDSD</th><th>Xác nhận đơn vị</th><th>Cam kết SHTT</th><th>Thông tin tác giả</th></tr>
+  </thead>
+  <tbody id="dossier-body"></tbody>
+</table>
+<p class="small muted" style="margin:8px 2px 0"><span class="ok">Có</span> · <span class="part">Một phần / chưa đạt chuẩn</span> · <span class="miss">Thiếu</span></p>
+
+<h2>5. Nhận định chung</h2>
+<div class="card">
+  <ul>
+    <li><b>Điểm mạnh chung:</b> 7/8 bài đã áp dụng thật tại đơn vị, không chỉ dừng ở ý tưởng; nhiều bài chú trọng an toàn thông tin, giữ con người quyết định cuối cùng.</li>
+    <li><b>Điểm yếu lớn nhất là số liệu hiệu quả</b> – tiêu chí nặng nhất (40 điểm). 3 bài không có số liệu hiệu quả định lượng (Copilot, DGS, IDC Miền Trung); 3 bài dùng số ước tính hoặc so với phương án giả định (IDC Miền Nam, GOE, AI-Guard); 1 bài còn số liệu mâu thuẫn (SOC AI).</li>
+    <li><b>Hồ sơ chưa hoàn chỉnh:</b> chỉ 1/8 bài (SOC AI) nộp đủ 6 thành phần, và ngay bài này bản xác nhận vẫn chưa ký; 3 bài thiếu video, 3 bài thiếu bản xác nhận đơn vị; 2 bản xác nhận còn chưa ký, chưa số.</li>
+    <li><b>Có hai dạng “ứng dụng AI”:</b> AI nằm trong sản phẩm (SOC AI, AI-Guard, GOE, FMIS) và AI làm công cụ để tự xây phần mềm (IDC Miền Nam, IDC Miền Trung, DGS). Dạng thứ hai cho hiệu quả thực tế tốt nhưng dễ bị giám khảo trừ điểm hàm lượng AI – cần chuẩn bị lập luận khi thuyết trình.</li>
+  </ul>
+</div>
+
+<h2>6. Việc cần làm trước hạn 01/12/2026</h2>
+<div class="card">
+  <ul>
+    <li><b>SOC AI:</b> xóa ghi chú mẫu “các ô đánh dấu vàng cần điền số liệu”; thống nhất số liệu bảng 5 (100 vs mục tiêu 50 cảnh báo/người/ngày; giảm 83% thời gian vs “tiết kiệm 40%”); ký, đóng dấu bản xác nhận.</li>
+    <li><b>IDC Miền Nam:</b> bổ sung bản xác nhận đơn vị; rút báo cáo về ≤ 15 trang (phần còn lại đưa vào phụ lục); nếu có, lượng hóa doanh thu từ rack vượt công suất thuê.</li>
+    <li><b>Bài dự phòng GOE:</b> thống nhất mốc thời gian và đơn vị khởi nguồn (VGS hay SI) giữa bản dự thi và bản docx v2 – liên quan trực tiếp bản cam kết SHTT.</li>
+    <li><b>Các bài không gửi lên:</b> gửi lại nhận xét để đơn vị hoàn thiện, có thể xét ở đợt sau hoặc khen thưởng cấp đơn vị.</li>
+    <li><b>Lưu ý hạn:</b> hạn nội bộ VNPT IT (15/11) đã qua; hồ sơ cần chốt sớm để Văn phòng Công đoàn nhập lên unions.vnpt.vn trước 01/12.</li>
+  </ul>
+</div>
+
+<div class="note" style="margin-top:20px">
+  <b>Phương pháp:</b> điểm do Hội đồng đề xuất trên cơ sở đọc toàn bộ báo cáo mô tả, tài liệu kỹ thuật, bản cam kết và bản xác nhận của 8 bài, đối chiếu với 5 tiêu chí tại Mục V Thể lệ. Video chỉ được kiểm tra thời lượng, chưa đánh giá nội dung. Các bản scan được đọc bằng nhận dạng chữ (OCR); một số chi tiết nhỏ (ví dụ tỷ lệ đóng góp) nên đối chiếu lại bản gốc. Điểm mang tính tham khảo, quyết định cuối cùng thuộc Hội đồng.
+</div>
+
+<footer>Công đoàn VNPT IT · Báo cáo tổng hợp chấm bài dự thi Ứng dụng AI 2026</footer>
+</div>
+
+<script>
+const entries = [
+  {name:"VNPT SOC AI", full:"Trợ lý AI phân loại, điều tra cảnh báo an ninh mạng (đồ thị tri thức + LLM)", unit:"Trung tâm An toàn thông tin", lead:"Vũ Mạnh Kiểm", s:[34,27,9,9,7], rec:"send",
+   strengths:["Production soc-ai.vnpt.vn từ 01/10/2026, 10 chuyên viên, 100.000 cảnh báo đã xử lý","Điều tra 30 → 5 phút/cảnh báo; báo cáo kỹ thuật 20 → 1 phút; tiết kiệm ~40% công","AI giải thích dựa trên đồ thị, chế độ shadow/live, phát hiện drift, chống prompt injection từ log","Kiến trúc multi-tenant, nhân rộng được cho NOC, ticket, các VNPT tỉnh"],
+   issues:["Còn sót ghi chú mẫu “ô vàng cần điền số liệu thực đo”","Số liệu chưa nhất quán (100 vs mục tiêu 50 cảnh báo/người/ngày; 83% vs 40%)","Độ chính xác AI 80% – còn xa ngưỡng 99,5% để tự động đóng cảnh báo"]},
+  {name:"Hệ thống quản lý nội bộ IDC", full:"Ứng dụng AI để tự xây công cụ quản lý kết nối điện, đo kiểm ắc quy, chi phí", unit:"IDC Miền Nam – TT Hạ tầng IDC", lead:"Nguyễn Quốc Vạn", s:[35,22,9,9,7], rec:"send",
+   strengths:["Vận hành 10 tháng, 41 người dùng, 3 site; 1.068 rack, ~15 triệu bản ghi, 2.523 bình ắc quy","Báo cáo công suất 20–25 giờ → <1 giờ/tháng; đánh giá ắc quy 16–20 giờ → 15–20 phút; chi phí 6–8 giờ → <5 phút","Tự phát hiện rack vượt công suất thuê – căn cứ bán thêm kW, chống thất thu","Dữ liệu rack lần đầu khớp 100% hiện trường; phương pháp 5 bước làm việc với AI nhân rộng được"],
+   issues:["AI chỉ là công cụ lập trình; 3 phân hệ chính không chứa mô hình AI – dễ bị trừ điểm hàm lượng AI","Số liệu tiết kiệm là ước tính (có nêu căn cứ); chưa lượng hóa doanh thu","Báo cáo 27 trang (vượt 8–15); thiếu bản xác nhận đơn vị"]},
+  {name:"GOE – Global Opportunity Engine", full:"AI tìm kiếm và chuẩn bị cơ hội bán hàng B2B quốc tế trên 6 thị trường", unit:"TT Giải pháp số doanh nghiệp (SI)", lead:"Nguyễn Hồng Nghi", s:[31,27,8,8,7], rec:"res",
+   strengths:["5 AI agent; cổng chống “AI bịa” trong code; cổng tuân thủ APPI/PIPA/PDPA/GDPR… theo thiết kế","17.355 account chấm điểm, 7.784 tín hiệu, 404 hồ sơ AI, 5.346 gói thầu theo dõi","Nghiên cứu 1 doanh nghiệp 2–4 giờ → <5 phút; chi phí ~9.000 USD/năm","Đóng gói được thành SPDV; đã có doanh nghiệp, hiệp hội, đối tác Nhật quan tâm"],
+   issues:["Kết quả kinh doanh còn mỏng: 15 deal mở, 1 phản hồi/20 công ty Nhật","Tiết kiệm 52–71 nghìn USD là so với phương án mua giả định; pipeline 1,08 triệu USD là mô hình phễu","Bản dự thi (dùng từ 9/2026) lệch bản docx v2 (từ 01/2026, khởi nguồn tại VGS) – cần làm rõ quyền tác giả"]},
+  {name:"VNPT AI-Guard", full:"Kiểm soát lộ lọt dữ liệu, Prompt Injection, Skill/MCP khi dùng AI", unit:"Trung tâm An toàn thông tin", lead:"Trịnh Khắc Vinh", s:[28,28,8,7,9], rec:"res",
+   strengths:["Hợp nhất DLP + Prompt Security + kiểm soát MCP trong một proxy; guard model chạy nội bộ","Hồ sơ chuẩn nhất: 304 test case 0 lỗi, 0 lỗ hổng Nghiêm trọng/Cao, UX 4,1/5, có phụ lục minh chứng","Đã chạy SmartCloud; tiềm năng thương mại cho tài chính, y tế, nhà nước"],
+   issues:["Số liệu chủ yếu đo chất lượng sản phẩm, chưa đo hiệu quả công việc (chỉ tiêu chính “sẽ đo trong pilot”)","Thí điểm mới 60 người dùng, 50 sự kiện phát hiện, 90% chính xác","Cùng đơn vị với SOC AI"]},
+  {name:"AI đồng bộ dữ liệu hạch toán FMIS", full:"AI Agent tự kiểm tra, chốt, gửi đồng bộ FMIS và thông báo", unit:"Ban Đối soát và Thanh khoản", lead:"Phạm Thị Quý Nghĩa", s:[26,20,9,8,6], rec:"fix",
+   strengths:["Áp dụng thật từ 07/2026, ~8 lần chạy đều xong trước 8h00","AI Agent + skill thay RPA cứng, tự xử lý lỗi “chưa khóa/chưa chốt”","Mô hình “Gateway + skill + lịch” dễ nhân rộng, chi phí thấp"],
+   issues:["Quy mô hiệu quả nhỏ (~10–22 giờ công/năm)","Thiếu video demo","Chạy trên máy trạm cá nhân; gateway chưa có xác thực"]},
+  {name:"AI đo kiểm hạ tầng IDC Miền Trung", full:"Tự động thu thập, tổng hợp, đối chiếu số liệu đo kiểm hạ tầng", unit:"IDC Miền Trung – TT Hạ tầng IDC", lead:"Hoàng Thái Lương", s:[22,16,8,8,5], rec:"fix",
+   strengths:["Chạy thật trên OneBSS tại IDC An Đồn từ 10/2026","Tự điền 176 ô dữ liệu, đối chiếu >200 ô, cảnh báo ghi rõ tên thông số","Dễ nhân rộng sang các ca trực, IDC khác cùng biểu mẫu"],
+   issues:["Không có số liệu thời gian trước/sau hay số lỗi giảm","Bản chất là script tự động hóa do AI viết – hàm lượng AI thấp","Video 2 phút (dưới 3 phút); không có TL kỹ thuật riêng"]},
+  {name:"Microsoft Copilot kiểm tra tham số biểu", full:"Copilot kiểm tra, đối chiếu nghiệp vụ khai báo tham số biểu", unit:"Ban Đối soát và Thanh khoản", lead:"Nguyễn Viết Thành", s:[15,17,8,6,3], rec:"no",
+   strengths:["Quy trình 7 bước, đối chiếu 4 chiều, 6 nguyên tắc kiểm soát – ý tưởng hợp lý","Dùng license Copilot sẵn có, rất dễ nhân rộng"],
+   issues:["Bảng kết quả còn để trống “[Điền số biểu]”, “[VD: … giờ]” – không có số liệu nào","Không có video; file TL kỹ thuật lỗi khi giải nén","Báo cáo dài (~7.300 từ), văn phong dàn trải"]},
+  {name:"Trang HTML luồng XNK – Cửa khẩu số", full:"AI dựng trang HTML trực quan hóa luồng xuất nhập khẩu", unit:"Trung tâm DGS", lead:"Vũ Thị Thu Hoài", s:[10,12,6,4,4], rec:"no",
+   strengths:["Báo cáo ngắn gọn, trung thực về giới hạn","Khung trình chiếu dùng lại được cho sản phẩm khác"],
+   issues:["Chỉ là tư liệu giới thiệu sản phẩm; báo cáo tự nêu chưa có số liệu tiết kiệm","Thiếu TL kỹ thuật, xác nhận đơn vị; “video” là link trang HTML","Lãnh đạo ký xác nhận đồng thời là tác giả chủ trì"]}
+];
+const recLabel = {send:["Gửi dự thi cấp trên","p-send"],res:["Dự phòng","p-res"],fix:["Hoàn thiện thêm","p-fix"],no:["Chưa đạt","p-no"]};
+const max=[40,30,10,10,10], cols=["var(--c1)","var(--c2)","var(--c3)","var(--c4)","var(--c5)"];
+const crName=["Hiệu quả","Sáng tạo","Khả thi","Tác động","Hồ sơ"];
+const sum=a=>a.reduce((x,y)=>x+y,0);
+entries.forEach(e=>e.total=sum(e.s));
+entries.sort((a,b)=>b.total-a.total);
+
+const sb=document.getElementById("score-body");
+entries.forEach((e,i)=>{
+  const bar=e.s.map((v,k)=>`<i style="width:${v}%;background:${cols[k]}" title="${crName[k]}: ${v}/${max[k]}"></i>`).join("");
+  const [lbl,cls]=recLabel[e.rec];
+  sb.insertAdjacentHTML("beforeend",`<tr>
+    <td class="num">${i+1}</td>
+    <td><b>${e.name}</b><div class="muted small">${e.unit}</div></td>
+    ${e.s.map(v=>`<td class="num">${v}</td>`).join("")}
+    <td class="num tot">${e.total}</td>
+    <td class="hide-sm"><div class="bar">${bar}</div></td>
+    <td><span class="pill ${cls}">${lbl}</span></td></tr>`);
+});
+
+const en=document.getElementById("entries");
+entries.forEach((e,i)=>{
+  const [lbl,cls]=recLabel[e.rec];
+  en.insertAdjacentHTML("beforeend",`<div class="card entry">
+    <div class="entry-head">
+      <div><h3>${i+1}. ${e.name}</h3><div class="unit">${e.full} · ${e.unit} · Chủ trì: ${e.lead}</div></div>
+      <div style="text-align:right"><div class="big">${e.total}<span class="muted small">/100</span></div><span class="pill ${cls}">${lbl}</span></div>
+    </div>
+    <div class="crit">${e.s.map((v,k)=>`<div><b>${v}<span class="muted small">/${max[k]}</span></b>${crName[k]}</div>`).join("")}</div>
+    <div class="two">
+      <div><h4 class="ok">Điểm mạnh</h4><ul>${e.strengths.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+      <div><h4 class="miss">Cần làm rõ / điểm trừ</h4><ul>${e.issues.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+    </div></div>`);
+});
+
+const dossier=[
+  ["VNPT SOC AI",["ok","Có"],["ok","3:33"],["ok","Có"],["part","Chưa ký, chưa số"],["ok","Có"],["ok","Có"]],
+  ["Hệ thống quản lý nội bộ IDC",["part","27 trang"],["ok","6:54"],["ok","Có"],["miss","Thiếu"],["ok","Có"],["ok","Có"]],
+  ["GOE",["ok","18 trang"],["ok","4:32"],["ok","Có"],["miss","Thiếu"],["ok","Có"],["ok","Có"]],
+  ["VNPT AI-Guard",["ok","Có"],["ok","6:54"],["ok","Có"],["part","Chưa ký, chưa số"],["ok","Có"],["part","Trong báo cáo"]],
+  ["AI đồng bộ FMIS",["ok","~10 trang"],["miss","Thiếu"],["ok","Có"],["ok","Có"],["ok","Có"],["part","Trong báo cáo"]],
+  ["AI đo kiểm IDC Miền Trung",["ok","12 trang"],["part","2:02"],["miss","Thiếu"],["part","CĐ ký trên BC"],["ok","Có"],["ok","Có"]],
+  ["Copilot kiểm tra tham số",["part","Còn placeholder"],["miss","Thiếu"],["miss","File lỗi"],["ok","Có"],["ok","Có"],["part","Trong báo cáo"]],
+  ["Trang HTML Cửa khẩu số",["ok","9 trang"],["part","Chỉ có link"],["miss","Thiếu"],["miss","Thiếu"],["ok","Có"],["part","Trong báo cáo"]]
+];
+const db=document.getElementById("dossier-body");
+dossier.forEach(r=>{
+  db.insertAdjacentHTML("beforeend",`<tr><td><b>${r[0]}</b></td>${r.slice(1).map(c=>`<td class="${c[0]}">${c[1]}</td>`).join("")}</tr>`);
+});
+</script>
+</body>
+</html>
