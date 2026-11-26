@@ -180,9 +180,9 @@ function phieuSection(L){
   const by = {}; L.forEach(i=>{(by[i.sp]=by[i.sp]||{dv:i.dv,n:0}).n++;});
   const sps = Object.keys(by).sort((a,b)=>by[a].dv.localeCompare(by[b].dv)||a.localeCompare(b,'vi'));
   const co = sps.filter(sp=>phieuOf(sp).length);
-  const nf = new Set(PH.phieu.filter(p=>p.sp).map(p=>p.url)).size;
+  const nf = new Set(PH.phieu.filter(p=>p.sp).map(p=>p.file)).size;
   const ngoai = PH.phieu.filter(p=>!p.sp);
-  const fl = P => P.map(p=>`<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.file)}</a>`).join('<br>');
+  const fl = P => P.map(p=>p.url?`<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.file)}</a>`:esc(p.file)).join('<br>');
   const rows = sps.map(sp=>{const P=phieuOf(sp); return `<tr><td>${esc(sp)}</td><td>${esc(by[sp].dv)}</td><td class="c">${by[sp].n}</td><td class="c">${P.length||'–'}</td>
     <td><span class="pill ${P.length?'s-done':'s-warn'}">${P.length?'Có phiếu':'Chưa có phiếu'}</span></td><td class="small">${P.length?fl(P):''}${P.filter(p=>p.gc).map(p=>`<div class="sub" style="color:var(--amber)">${esc(p.gc)}</div>`).join('')}</td></tr>`;}).join('');
   return `<details class="card pad" open><summary><b>Đối chiếu phiếu đăng ký TMH</b> <span class="small muted">· ${co.length}/${sps.length} sản phẩm có phiếu (${nf} file) · ${sps.length-co.length} chưa có · ${ngoai.length} phiếu ngoài danh sách đăng ký · cập nhật ${esc(PH.cap_nhat)}</span></summary>
@@ -248,7 +248,7 @@ function drawGroups(nam){
     return `<details class="card prod" ${many?'':'open'}><summary>
       <div><span class="nm">${esc(sp)}</span> <span class="chip">${esc(G[0].dv)}</span>
         ${pdm?`<div class="small muted" style="margin-left:16px">PdM: ${esc(pdm)}${cq?' · Chuyên quản: '+esc(cq):''}</div>`:''}</div>
-      <div class="meta">${nam===2027&&PH?(()=>{const P=phieuOf(sp);return P.length?`<a class="pill s-done" href="${esc(P[0].url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="${esc(P.map(p=>p.file).join(', '))}">Có phiếu</a>`:'<span class="pill s-warn">Chưa có phiếu</span>';})():''}<span>${G.length} hạng mục</span>${mmTxt?`<span>${mmTxt}</span>`:''}
+      <div class="meta">${nam===2027&&PH?(()=>{const P=phieuOf(sp);return P.length?(P[0].url?`<a class="pill s-done" href="${esc(P[0].url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="${esc(P.map(p=>p.file).join(', '))}">Có phiếu</a>`:`<span class="pill s-done" title="${esc(P.map(p=>p.file).join(', '))}">Có phiếu</span>`):'<span class="pill s-warn">Chưa có phiếu</span>';})():''}<span>${G.length} hạng mục</span>${mmTxt?`<span>${mmTxt}</span>`:''}
         ${nam!==2027?`<span class="prog"><span class="bar"><i style="width:${Math.round(p*100)}%"></i></span>${Math.round(p*100)}%</span>`:''}</div></summary>
       <div class="tbl"><table class="items"><thead><tr><th style="width:46%">Nội dung</th><th>Loại</th><th>Phạm vi</th><th class="r">Hạn</th><th class="r">MM IT</th><th class="r" title="Đăng ký; TH = đã thực hiện khi không có số đăng ký">MM AI</th><th>Trạng thái</th></tr></thead><tbody>
       ${G.map(i=>`<tr onclick="openItem(${i.id})"><td><div class="nd">${esc(i.nd)}</div>${i.nhom?`<div class="sub">${esc(i.nhom)}</div>`:''}</td>
