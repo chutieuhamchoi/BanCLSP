@@ -5,7 +5,8 @@
     "MDS": "https://drive.google.com/drive/folders/1SiXUtW5SpRvDJb_y3NV7pZGyGhztN1lp",
     "SI": "https://drive.google.com/drive/folders/1Fy5Jusv-52k32bHYS_DHvRPQReKaIOZz",
     "DAS": "https://drive.google.com/drive/folders/1_nKgKz7ZngNJ32nycZH7wY6uft-1rZFh",
-    "DGS": "https://drive.google.com/drive/folders/1ovWY1hLUiZVOPDRBC1Nn7lLLs46_SojI"
+    "DGS": "https://drive.google.com/drive/folders/1ovWY1hLUiZVOPDRBC1Nn7lLLs46_SojI",
+    "DES": "https://drive.google.com/drive/folders/1TU3R0KDbeVusoxou5bC5L0oNlyuMUaHy"
   },
   "phieu": [
     {
@@ -100,6 +101,20 @@
       "file": "Phieu dang ky TMH DGCB 2027 v1.1.docx",
       "url": "https://drive.google.com/file/d/11xqYLA76ZXwQgpYee_6i9uCoWXSYeSsv/view",
       "ngay": "17/11/2026"
+    },
+    {
+      "sp": "vnEdu Hss",
+      "dv": "DES",
+      "file": "Phieu_dang_ky_TMH_SPDV_2027_Ho_so_so.docx",
+      "url": "https://drive.google.com/file/d/1nuN2a59gmqL8U3DxtRD1ECt63o_PVcaU/view",
+      "ngay": "16/11/2026"
+    },
+    {
+      "sp": "vnEdu LMS",
+      "dv": "DES",
+      "file": "Phieu_dang_ky_TMH_SPDV_2027_vnEdu_LMS_v1.0.1.docx",
+      "url": "https://drive.google.com/file/d/1-GqdJ58JADpLM3SmoxIi-2p1igV5PFei/view",
+      "ngay": "16/11/2026"
     },
     {
       "sp": null,
