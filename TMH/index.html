@@ -3,180 +3,303 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tra cứu Thông minh hóa SPDV VNPT-IT – Ban CLSP</title>
+<title>Quản lý Thông minh hóa SPDV – Ban CLSP VNPT-IT</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#f6f7f9;--card:#fff;--ink:#1b2430;--muted:#5d6878;--line:#e3e7ec;--brand:#0a5cc2;--brand-soft:#e8f0fb;
-    --green:#1d7a46;--green-soft:#e3f4ea;--amber:#9a6300;--amber-soft:#fdf3dc;--purple:#6b3fa0;--purple-soft:#f0e9f8;--gray-soft:#eef1f4}
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 "Be Vietnam Pro",system-ui,sans-serif}
-  .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 64px}
-  header{background:linear-gradient(135deg,#0a3f8a,#0a5cc2);color:#fff;border-radius:14px;padding:26px 30px}
-  header .org{font-size:13px;opacity:.85;letter-spacing:.04em;text-transform:uppercase}
-  header h1{margin:6px 0 8px;font-size:26px;line-height:1.3}
-  header p{margin:0;opacity:.9;font-size:14px}
-  nav.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0}
-  nav.tabs a{padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:14px;font-weight:500}
-  nav.tabs a:hover{border-color:var(--brand);color:var(--brand)}
-  h2{font-size:19px;margin:34px 0 12px;scroll-margin-top:12px}
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
-  .card h3{margin:0 0 6px;font-size:16px}
-  .card .yr{display:inline-block;font-weight:700;color:var(--brand);background:var(--brand-soft);border-radius:8px;padding:1px 10px;font-size:13px;margin-bottom:6px}
-  .card ul{margin:6px 0 0;padding-left:18px}
-  .muted{color:var(--muted)} .small{font-size:13px}
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:8px 0 14px}
-  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
-  .stat b{display:block;font-size:22px;line-height:1.2} .stat span{color:var(--muted);font-size:13px}
-  .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
-  .filters input,.filters select{font:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
-  .filters #q{flex:1;min-width:240px}
-  .filters label{display:flex;align-items:center;gap:6px}
-  .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
-  table{width:100%;border-collapse:collapse;font-size:14px}
-  th,td{padding:9px 11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-  th{background:#f0f3f7;font-weight:600;font-size:13px;color:#3a4553;position:sticky;top:0}
-  tr:last-child td{border-bottom:none}
-  tr.pl td{background:#fafbfc} tr.pl td:first-child{padding-left:22px}
-  td.nw,th.nw{white-space:nowrap}
-  .so{font-weight:600;white-space:nowrap}
-  .pill{display:inline-block;padding:1px 9px;border-radius:999px;font-size:12px;white-space:nowrap}
-  .p-qd{background:var(--green-soft);color:var(--green)} .p-cv{background:var(--brand-soft);color:var(--brand)}
-  .p-tb{background:var(--amber-soft);color:var(--amber)} .p-tt{background:var(--purple-soft);color:var(--purple)}
-  .p-pl{background:var(--gray-soft);color:var(--muted)}
-  .sub{color:var(--muted);font-size:12.5px;margin-top:3px}
-  .chk{color:var(--green);font-weight:700}
-  footer{margin-top:40px;color:var(--muted);font-size:13px}
-  @media(max-width:820px){.grid3,.stats{grid-template-columns:1fr 1fr}}
-  @media(max-width:560px){.grid3,.stats{grid-template-columns:1fr}}
+:root{--bg:#f4f6f9;--card:#fff;--ink:#1b2430;--muted:#5d6878;--line:#e3e7ec;--soft:#f0f3f7;
+  --brand:#0a5cc2;--brand-soft:#e8f0fb;--green:#1d7a46;--green-soft:#e3f4ea;--amber:#9a6300;--amber-soft:#fdf3dc;
+  --red:#b3261e;--red-soft:#fbe7e5;--purple:#6b3fa0;--purple-soft:#f0e9f8;--gray-soft:#eef1f4}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:14.5px/1.55 "Be Vietnam Pro",system-ui,sans-serif}
+a{color:var(--brand)}
+.top{background:linear-gradient(135deg,#0a3f8a,#0a5cc2);color:#fff}
+.top .in{max-width:1240px;margin:0 auto;padding:18px 20px 0}
+.top .org{font-size:12px;opacity:.85;letter-spacing:.05em;text-transform:uppercase}
+.top h1{margin:2px 0 12px;font-size:22px}
+.tabs{display:flex;gap:2px;overflow-x:auto}
+.tabs a{color:#dce8fa;text-decoration:none;padding:10px 18px;border-radius:10px 10px 0 0;font-weight:500;white-space:nowrap}
+.tabs a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.tabs a.on{background:var(--bg);color:var(--ink);font-weight:600}
+.tabs a small{opacity:.75;font-weight:400;margin-left:6px;font-size:12px}
+main{max-width:1240px;margin:0 auto;padding:20px 20px 60px}
+.view{display:none}.view.on{display:block}
+h2{font-size:18px;margin:26px 0 10px}
+h2:first-child{margin-top:4px}
+.muted{color:var(--muted)}.small{font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px}
+.pad{padding:16px 18px}
+.pill{display:inline-block;padding:1px 9px;border-radius:999px;font-size:12px;white-space:nowrap;font-weight:500}
+.s-done{background:var(--green-soft);color:var(--green)}.s-run{background:var(--brand-soft);color:var(--brand)}
+.s-wait{background:var(--gray-soft);color:var(--muted)}.s-warn{background:var(--amber-soft);color:var(--amber)}
+.s-plan{background:var(--purple-soft);color:var(--purple)}
+.chip{display:inline-block;padding:0 7px;border-radius:6px;font-size:11.5px;background:var(--soft);color:#3a4553;white-space:nowrap}
+/* Tổng quan */
+.yrs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.yr{padding:16px 18px;cursor:pointer;transition:border-color .15s}
+.yr:hover{border-color:var(--brand)}
+.yr .h{display:flex;justify-content:space-between;align-items:center}
+.yr .n{font-size:24px;font-weight:700;color:var(--brand)}
+.yr .nums{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0 8px}
+.yr .nums b{display:block;font-size:19px}.yr .nums span{font-size:12px;color:var(--muted)}
+.yr .go{font-size:13px;font-weight:600;color:var(--brand)}
+table{width:100%;border-collapse:collapse}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--soft);font-size:12.5px;font-weight:600;color:#3a4553}
+tr:last-child td{border-bottom:none}
+.tbl{overflow-x:auto}
+td.c,th.c{text-align:center}td.r,th.r{text-align:right;white-space:nowrap}
+.mx td.c b{color:var(--brand)}
+.mx td.c a{text-decoration:none;font-weight:600}
+/* Năm */
+.yhead{display:flex;gap:16px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.yhead h2{margin:0}
+details.info{margin:0 0 6px}
+details.info summary{cursor:pointer;color:var(--brand);font-weight:500;font-size:13.5px}
+details.info .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+details.info ul{margin:4px 0 0;padding-left:18px}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:14px 0}
+.kpi{padding:12px 14px}.kpi b{display:block;font-size:20px;line-height:1.25}.kpi span{font-size:12px;color:var(--muted)}
+.kpi .bar{height:5px;background:var(--soft);border-radius:4px;margin-top:6px;overflow:hidden}
+.kpi .bar i{display:block;height:100%;background:var(--green)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px;position:sticky;top:0;z-index:5;background:var(--bg);padding:8px 0}
+.filters input,.filters select{font:inherit;font-size:13.5px;padding:7px 10px;border:1px solid var(--line);border-radius:9px;background:#fff}
+.filters input[type=search]{flex:1;min-width:220px}
+.filters .cnt{margin-left:auto;font-size:13px;color:var(--muted)}
+.btn{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;cursor:pointer}
+.btn:hover{border-color:var(--brand);color:var(--brand)}
+.prod{margin-bottom:10px;overflow:hidden}
+.prod>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:10px;padding:12px 16px;align-items:center}
+.prod>summary::-webkit-details-marker{display:none}
+.prod>summary .nm{font-weight:600;font-size:15px}
+.prod>summary .nm::before{content:"▸";display:inline-block;width:16px;color:var(--muted);transition:transform .15s}
+.prod[open]>summary .nm::before{transform:rotate(90deg)}
+.prod>summary .meta{display:flex;gap:14px;align-items:center;font-size:12.5px;color:var(--muted);flex-wrap:wrap;justify-content:flex-end}
+.prog{display:inline-flex;align-items:center;gap:6px}
+.prog .bar{width:70px;height:6px;background:var(--soft);border-radius:4px;overflow:hidden}
+.prog .bar i{display:block;height:100%;background:var(--green)}
+.prod table{border-top:1px solid var(--line)}
+.prod td{font-size:13.5px}
+.items tr{cursor:pointer}.items tr:hover td{background:#f8fafc}
+.nd{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+/* Drawer */
+.dim{position:fixed;inset:0;background:rgba(15,25,40,.35);display:none;z-index:20}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(620px,100%);background:#fff;z-index:21;transform:translateX(100%);transition:transform .2s;overflow-y:auto;box-shadow:-8px 0 30px rgba(0,0,0,.12)}
+.drawer.on{transform:none}.dim.on{display:block}
+.drawer .dh{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:14px 18px;display:flex;justify-content:space-between;gap:10px}
+.drawer .db{padding:14px 18px 40px}
+.drawer h3{margin:0;font-size:16px;line-height:1.4}
+.drawer dl{display:grid;grid-template-columns:130px 1fr;gap:8px 12px;margin:0}
+.drawer dd a{word-break:break-all}
+.drawer dt{color:var(--muted);font-size:13px}.drawer dd{margin:0;white-space:pre-line}
+.drawer .sec{margin-top:16px;font-weight:600}
+.x{border:none;background:none;font-size:22px;cursor:pointer;color:var(--muted);line-height:1}
+/* Văn bản */
+tr.pl td{background:#fafbfc}
+.p-qd{background:var(--green-soft);color:var(--green)}.p-cv{background:var(--brand-soft);color:var(--brand)}
+.p-tb{background:var(--amber-soft);color:var(--amber)}.p-tt{background:var(--purple-soft);color:var(--purple)}.p-pl{background:var(--gray-soft);color:var(--muted)}
+.so{font-weight:600;white-space:nowrap}.sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+footer{max-width:1240px;margin:0 auto;padding:0 20px 30px;color:var(--muted);font-size:12.5px}
+@media(max-width:900px){.yrs{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(3,1fr)}details.info .cols{grid-template-columns:1fr}}
+@media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}.prod>summary{grid-template-columns:1fr}.prod>summary .meta{justify-content:flex-start}}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header>
+<div class="top"><div class="in">
   <div class="org">VNPT-IT · Ban Chiến lược Sản phẩm</div>
-  <h1>Tra cứu Thông minh hóa (TMH) sản phẩm, dịch vụ</h1>
-  <p>Kế hoạch, kết quả TMH các năm 2025 – 2027 và danh mục văn bản có số. Cập nhật 26/11/2026.</p>
-</header>
-<nav class="tabs">
-  <a href="#nam">Tổng quan theo năm</a>
-  <a href="#vanban">Danh mục văn bản</a>
-  <a href="#sanpham">Sản phẩm qua các năm</a>
-  <a href="#danchieu">Văn bản dẫn chiếu khác</a>
-</nav>
+  <h1>Quản lý Thông minh hóa sản phẩm, dịch vụ (TMH)</h1>
+  <nav class="tabs" id="tabs"></nav>
+</div></div>
+<main id="main">
+  <section class="view" id="v-tongquan"></section>
+  <section class="view" id="v-nam"></section>
+  <section class="view" id="v-vanban"></section>
+</main>
+<footer>Nguồn: hồ sơ TMH 2025, báo cáo tiến độ tháng 10/2026, biểu mẫu đề xuất kế hoạch 2027 · Dữ liệu tại <code>TMH/data/</code> · <a href="../">Danh sách báo cáo</a></footer>
+<div class="dim" id="dim"></div>
+<aside class="drawer" id="drawer"></aside>
 
-<h2 id="nam">Tổng quan theo năm</h2>
-<div class="grid3">
-  <div class="card"><span class="yr">2025</span><h3>Kết quả cả năm</h3>
-    <div class="small muted">Tập đoàn: QĐ 12/QĐ-VNPT-CLSP (14/03/2025), điều chỉnh VB 7431 (12/9/2025). Công ty: QĐ 710 (06/5/2025), điều chỉnh QĐ 779 (15/5/2025), QĐ 1566 (18/9/2025). BCĐ TMH: QĐ 1908, 873</div>
-    <ul class="small">
-      <li>9 sản phẩm (+ vnCitizens ở chi tiết), đều hoàn thành 100%</li>
-      <li>52 tính năng/đầu việc UI/UX và AI</li>
-      <li>Chưa ban hành gói cước chính thức LMS, vnPortal, iOffice do chưa có cơ chế kinh tế với VNPT AI</li>
-      <li>iGate: đề xuất không GTM gói cước</li>
-      <li>Báo cáo: VB 150/VNPTIT-CLSP (13/01/2026); thông báo kênh bán: VB 1958 (28/5/2026)</li>
-    </ul></div>
-  <div class="card"><span class="yr">2026</span><h3>Tiến độ đến tháng 10</h3>
-    <div class="small muted">QĐ 464/QĐ-VNPT-CLSP (29/4/2026); QĐ 675 (07/5/2026); bổ sung QĐ 1049 (02/7/2026)</div>
-    <ul class="small">
-      <li>Tập đoàn giao: 6 sản phẩm, 12 nội dung (vnEdu Connect, vnEdu LMS, vnPortal, VSR, HKD, HMIS)</li>
-      <li>Công ty giao: eContract, Hóa đơn điện tử</li>
-      <li>MM VNPT-IT: đăng ký 70,4 · đã thực hiện 62,4</li>
-      <li>MM VNPT AI: đăng ký 191,6 · đã thực hiện 178,6 (không tính iOffice)</li>
-    </ul></div>
-  <div class="card"><span class="yr">2027</span><h3>Kế hoạch đề xuất</h3>
-    <div class="small muted">Chốt ngày 20/11/2026</div>
-    <ul class="small">
-      <li>19 SPDV, 36 hạng mục</li>
-      <li>464,8 MM: VNPT-IT 227,6 · VNPT AI 237,2</li>
-      <li>HKD 38,7 MM thuộc kế hoạch nâng cấp phiên bản</li>
-      <li>Chi phí khác 34 triệu đồng</li>
-    </ul></div>
-</div>
-
-<h2 id="vanban">Danh mục văn bản TMH (thư mục 2025 và 2026)</h2>
-<div class="stats" id="stats"></div>
-<div class="filters">
-  <input id="q" type="search" placeholder="Tìm theo số, trích yếu, đơn vị… (ví dụ: 464, HKD, iOffice)">
-  <select id="fTM"><option value="">Thư mục: tất cả</option><option value="2025">Thư mục TMH 2025</option><option value="2026">Thư mục TMH 2026</option></select>
-  <select id="fNam"><option value="">Năm văn bản: tất cả</option></select>
-  <select id="fLoai"><option value="">Tất cả loại</option></select>
-  <select id="fKH"><option value="">Thuộc KH TMH: tất cả</option></select>
-  <label class="small" style="align-self:center"><input type="checkbox" id="fPL" checked> Hiện phụ lục</label>
-</div>
-<div class="tblwrap"><table>
-  <thead><tr><th class="nw">Thư mục</th><th class="nw">STT</th><th class="nw">Ngày</th><th>Số văn bản</th><th>Loại</th><th>Trích yếu</th><th>Ban hành</th><th>KH TMH</th></tr></thead>
-  <tbody id="tb"></tbody>
-</table></div>
-<p class="small muted">Chỉ gồm văn bản PDF đã có số và phụ lục kèm theo. VB 150/VNPTIT-CLSP (báo cáo T12/2025) có ở cả hai thư mục, chỉ ghi một lần ở thư mục 2026. Các báo cáo tiến độ hằng tháng T3–T11/2025 và T5–T10/2026 chỉ có bản Word nên chưa đưa vào.</p>
-
-<h2 id="sanpham">Sản phẩm qua các năm</h2>
-<div class="tblwrap"><table>
-<thead><tr><th>Sản phẩm</th><th>Đơn vị</th><th>2025</th><th>2026</th><th>2027 (đề xuất)</th></tr></thead>
-<tbody>
-<tr><td>vnEdu LMS / E-Learning</td><td>DES</td><td><span class="chk">✓</span> UI/UX + 4 tính năng AI</td><td><span class="chk">✓</span> cá nhân hóa Tiếng Anh</td><td><span class="chk">✓</span></td></tr>
-<tr><td>vnEdu / Connect / Teacher</td><td>DES</td><td>chỉ lập KH 2026</td><td><span class="chk">✓</span> vnEdu Connect (2 nội dung)</td><td>–</td></tr>
-<tr><td>vnEdu IOC</td><td>DES</td><td><span class="chk">✓</span></td><td>–</td><td>–</td></tr>
-<tr><td>vnEdu HSS</td><td>DES</td><td>–</td><td>–</td><td><span class="chk">✓</span></td></tr>
-<tr><td>vnPortal</td><td>DGS</td><td><span class="chk">✓</span></td><td><span class="chk">✓</span> 2 nội dung</td><td><span class="chk">✓</span></td></tr>
-<tr><td>VNPT VSR</td><td>DGS</td><td>–</td><td><span class="chk">✓</span></td><td><span class="chk">✓</span></td></tr>
-<tr><td>VNPT IOC</td><td>DGS</td><td>–</td><td>–</td><td><span class="chk">✓</span></td></tr>
-<tr><td>VNPT iOffice</td><td>DAS</td><td><span class="chk">✓</span> 13 đầu việc; gói cước lùi 2026</td><td>ngoài 12 nội dung (AI 45 MM)</td><td><span class="chk">✓</span></td></tr>
-<tr><td>VNPT iGate</td><td>DAS</td><td><span class="chk">✓</span> đề xuất không GTM</td><td>–</td><td>–</td></tr>
-<tr><td>vnCitizens</td><td>DAS</td><td><span class="chk">✓</span> (chỉ ở chi tiết)</td><td>–</td><td>–</td></tr>
-<tr><td>HIS hợp nhất / HIS 4.0</td><td>DMS</td><td><span class="chk">✓</span> Lpixel, The Scribe</td><td>–</td><td>–</td></tr>
-<tr><td>VNPT HMIS</td><td>DMS</td><td>–</td><td><span class="chk">✓</span> 2 nội dung</td><td>–</td></tr>
-<tr><td>VNPT HKD</td><td>SI</td><td><span class="chk">✓</span></td><td><span class="chk">✓</span> 4 nội dung</td><td><span class="chk">✓</span> nâng cấp phiên bản</td></tr>
-<tr><td>VNPT eContract</td><td>SI</td><td>–</td><td>Công ty giao</td><td><span class="chk">✓</span></td></tr>
-<tr><td>Hóa đơn điện tử / VNPT Invoice</td><td>SI</td><td>–</td><td>Công ty giao</td><td><span class="chk">✓</span></td></tr>
-<tr><td>VNPT Cloud Portal</td><td>SBU Cloud</td><td><span class="chk">✓</span> UI/UX</td><td>–</td><td>–</td></tr>
-</tbody></table></div>
-
-<h2 id="danchieu">Văn bản được dẫn chiếu, chưa có bản PDF trong thư mục</h2>
-<div class="tblwrap"><table>
-<thead><tr><th>Số văn bản</th><th>Ngày</th><th>Trích yếu (theo nơi dẫn chiếu)</th></tr></thead>
-<tbody>
-<tr><td class='nw'><b>9068/VNPT-CN</b></td><td class='nw'>15/10/2024</td><td>Tập đoàn về ứng dụng công nghệ AI vào 03 CTHĐ dựa trên dữ liệu lớn</td></tr>
-<tr><td class='nw'><b>167/QĐ-VNPT-CLSP</b></td><td class='nw'>31/12/2024</td><td>Tập đoàn: báo cáo bổ sung kế hoạch chi tiết ứng dụng công nghệ 4.0 trong SPDV số năm 2025 của VNPT-IT</td></tr>
-<tr><td class='nw'><b>12/QĐ-VNPT-CLSP</b></td><td class='nw'>14/03/2025</td><td>Tập đoàn ban hành kế hoạch TMH SPDV cho VNPT-IT năm 2025</td></tr>
-<tr><td class='nw'><b>3592/VNPT-CLSP-TL</b></td><td class='nw'>09/05/2025</td><td>Tập đoàn phản hồi báo cáo tiến độ TMH tháng 3/2025, đề xuất điều chỉnh KH</td></tr>
-<tr><td class='nw'><b>7220/VNPT-CLSP</b></td><td class='nw'>05/09/2025</td><td>Tập đoàn hướng dẫn và điều chỉnh kế hoạch phát triển, nâng cấp SPDV số cho VNPT-IT năm 2025</td></tr>
-<tr><td class='nw'><b>1566/QĐ-VNPT IT-CLSP</b></td><td class='nw'>18/09/2025</td><td>Công ty giao điều chỉnh kế hoạch TMH SPDV VNPT-IT năm 2025 (lần 2)</td></tr>
-<tr><td class='nw'><b>1686/VNPTIT-CLSP</b></td><td class='nw'>11/05/2026</td><td>Giao nhiệm vụ phối hợp triển khai công tác SXKD DVSDN nhóm A</td></tr>
-<tr><td class='nw'><b>3497/VNPTIT-CLSP</b></td><td class='nw'>03/09/2026</td><td>Giao nhiệm vụ GTM gói cước và thông báo tính năng TMH lên kênh bán</td></tr>
-<tr><td class='nw'><b>3790/VNPTIT-SI-CLSP</b></td><td class='nw'>17/09/2026</td><td>Báo cáo hoàn thành TMH VNPT HKD kèm nâng cấp phiên bản 2.0</td></tr>
-<tr><td class='nw'><b>433/CV-CLSP</b></td><td class='nw'>21/10/2026</td><td>Tập đoàn triển khai đánh giá kế hoạch PTNC, TMH năm 2027</td></tr>
-</tbody></table></div>
-
-<footer>Ban Chiến lược Sản phẩm – VNPT-IT · Tổng hợp từ hồ sơ TMH 2025, 2026 và đề xuất 2027 · <a href="../">Danh sách báo cáo</a></footer>
-</div>
 <script>
-const DATA = [{"tm": "2025", "stt": "1", "ngay": "20/11/2024", "nam": "2024", "so": "3992/TB-VNPTIT-VP-TL", "loai": "Thông báo kết luận", "ty": "Kết luận cuộc họp về kế hoạch phát triển sản phẩm của Công ty năm 2025 (họp 12/11/2024)", "bh": "Công ty VNPT-IT (Văn phòng)", "nn": "Các Ban, Trung tâm dự họp", "pl": "", "kh": "2025", "gc": "Có chỉ đạo thành lập Ban chỉ đạo nâng cấp, thông minh hóa sản phẩm"}, {"tm": "2025", "stt": "2", "ngay": "11/12/2024", "nam": "2024", "so": "1908/QĐ-VNPT-IT-NS", "loai": "Quyết định", "ty": "Về việc thành lập Ban chỉ đạo thực hiện thông minh hóa sản phẩm dịch vụ giai đoạn 2025 – 2026 của Công ty VNPT-IT", "bh": "Công ty VNPT-IT (TGĐ Phạm Huy Hoàng)", "nn": "Thành viên Ban chỉ đạo, các đơn vị", "pl": "PL1 Thành viên Ban chỉ đạo; PL2", "kh": "2025–2026", "gc": "QĐ 873 dẫn ngày 19/12/2024"}, {"tm": "2025", "stt": "3", "ngay": "25/02/2025", "nam": "2025", "so": "539/VNPTIT-CLSP", "loai": "Công văn (báo cáo)", "ty": "V/v Báo cáo chi tiết kế hoạch thông minh hóa các SPDV của VNPT-IT năm 2025", "bh": "Công ty VNPT-IT (TGĐ Phạm Huy Hoàng)", "nn": "Ban CLSP Tập đoàn", "pl": "Phụ lục Kế hoạch TMH chi tiết SPDV VNPT-IT năm 2025", "kh": "2025", "gc": "8 SPDV; thực hiện QĐ 167/QĐ-VNPT-CLSP"}, {"tm": "2025", "stt": "4", "ngay": "19/03/2025", "nam": "2025", "so": "836/VNPTIT-CLSP-IC", "loai": "Công văn (báo cáo)", "ty": "Vv: Báo cáo nguồn lực thực hiện nhiệm vụ thông minh hoá", "bh": "Công ty VNPT-IT", "nn": "Lãnh đạo Tập đoàn", "pl": "", "kh": "2025", "gc": ""}, {"tm": "2025", "stt": "5", "ngay": "06/05/2025", "nam": "2025", "so": "710/QĐ-VNPT IT-CLSP", "loai": "Quyết định", "ty": "Về việc giao Kế hoạch Thông minh hóa SPDV của VNPT-IT năm 2025", "bh": "Công ty VNPT-IT (PTGĐ Nguyễn Tiến Cường)", "nn": "Các Trung tâm, SBU, PdM, các Ban", "pl": "PL01 Kế hoạch TMH theo từng trung tâm", "kh": "2025", "gc": "Thực hiện QĐ 12/QĐ-VNPT-CLSP (14/03/2025)"}, {"tm": "2025", "stt": "6", "ngay": "15/05/2025", "nam": "2025", "so": "779/QĐ-VNPT IT-CLSP", "loai": "Quyết định", "ty": "Về việc giao điều chỉnh kế hoạch thông minh hóa SPDV của VNPT-IT năm 2025", "bh": "Công ty VNPT-IT (PTGĐ Nguyễn Tiến Cường)", "nn": "Các Trung tâm, SBU, PdM, các Ban", "pl": "PL01 Kế hoạch TMH theo trung tâm; PL02 Mẫu báo cáo", "kh": "2025", "gc": "Điều chỉnh lần 1 (lần 2: QĐ 1566 ngày 18/9/2025)"}, {"tm": "2025", "stt": "7", "ngay": "16/05/2025", "nam": "2025", "so": "1741/VNPTIT-IC-CLSP", "loai": "Công văn (báo cáo)", "ty": "Vv: Báo cáo nguồn lực thực hiện nhiệm vụ thông minh hoá", "bh": "Công ty VNPT-IT (PTGĐ Nguyễn Tiến Cường)", "nn": "Lãnh đạo Tập đoàn", "pl": "Phụ lục chi tiết nhân sự", "kh": "2025", "gc": "Tập đoàn trả lời bằng VB 4247/VNPT-NL"}, {"tm": "2025", "stt": "8", "ngay": "29/05/2025", "nam": "2025", "so": "873/QĐ-VNPT-IT-NS", "loai": "Quyết định", "ty": "Về việc điều chỉnh nhân sự tham gia Ban chỉ đạo thực hiện thông minh hoá SPDV giai đoạn 2025 – 2026 của Công ty VNPT-IT", "bh": "Công ty VNPT-IT (TGĐ Phạm Huy Hoàng)", "nn": "Các P.TGĐ, thành viên BCĐ", "pl": "Phụ lục thành viên BCĐ và Tổ chuyên môn giúp việc", "kh": "2025–2026", "gc": "Bản scan"}, {"tm": "2025", "stt": "9", "ngay": "30/05/2025", "nam": "2025", "so": "4247/VNPT-NL", "loai": "Công văn", "ty": "V/v bổ sung chỉ tiêu tuyển dụng lao động cho VNPT-IT (phúc đáp VB 1741 về nguồn lực thông minh hóa)", "bh": "Tập đoàn VNPT (Ban Nhân lực)", "nn": "Công ty VNPT-IT; TT Phát triển nguồn nhân lực", "pl": "Phụ lục chỉ tiêu tuyển dụng", "kh": "2025", "gc": ""}, {"tm": "2025", "stt": "10", "ngay": "12/09/2025", "nam": "2025", "so": "7431/VNPT-CLSP", "loai": "Công văn", "ty": "V/v điều chỉnh kế hoạch thông minh hóa Sản phẩm, dịch vụ cho Công ty VNPT-IT trong năm 2025", "bh": "Tập đoàn VNPT", "nn": "Công ty VNPT-IT", "pl": "PL01 Kế hoạch điều chỉnh; PL02 Mẫu báo cáo hằng tháng", "kh": "2025", "gc": "Bổ sung 1 nhiệm vụ eLearning, 5 vnEdu IOC, 3 HKD, 4 HIS; giãn 9, loại 3 hạng mục iOffice"}, {"tm": "2025", "stt": "11", "ngay": "07/10/2025", "nam": "2025", "so": "3848/VNPTIT-CLSP", "loai": "Công văn (thông báo)", "ty": "V/v Thông báo bổ sung tính năng thông minh hóa các SPDV năm 2025 (lần 1)", "bh": "Công ty VNPT-IT (PTGĐ Nguyễn Tiến Cường)", "nn": "Tổng công ty Dịch vụ Viễn thông; các Viễn thông Tỉnh/TP", "pl": "PL01 Danh sách sản phẩm bổ sung tính năng TMH 2025 (Đợt 01); PL02 Mẫu thu thập đánh giá khách hàng", "kh": "2025", "gc": ""}, {"tm": "2025", "stt": "12", "ngay": "24/11/2025", "nam": "2025", "so": "4475/VNPTIT-CLSP", "loai": "Công văn (báo cáo)", "ty": "V/v Báo cáo Tập đoàn kết quả thông minh hóa sản phẩm VNPT iOffice", "bh": "Công ty VNPT-IT", "nn": "Tập đoàn VNPT", "pl": "3 phụ lục (12.1–12.3)", "kh": "2025", "gc": "Hoàn thành 7/9 nhiệm vụ iOffice; đề nghị lùi ban hành gói cước sang 2026"}, {"tm": "2025", "stt": "12.1", "ngay": "24/11/2025", "nam": "2025", "so": "PL kèm 4475/VNPTIT-CLSP", "loai": "Phụ lục", "ty": "Phụ lục 01: Kết quả triển khai và khó khăn, vướng mắc (9 nhiệm vụ TMH iOffice)", "bh": "Công ty VNPT-IT", "nn": "", "pl": "", "kh": "2025", "gc": ""}, {"tm": "2025", "stt": "12.2", "ngay": "24/11/2025", "nam": "2025", "so": "PL kèm 4475/VNPTIT-CLSP", "loai": "Phụ lục", "ty": "Phụ lục 02: Kế hoạch triển khai AI cho toàn Tập đoàn (hệ thống VNPT iOffice)", "bh": "Công ty VNPT-IT", "nn": "", "pl": "", "kh": "2025", "gc": ""}, {"tm": "2025", "stt": "12.3", "ngay": "24/11/2025", "nam": "2025", "so": "PL kèm 4475/VNPTIT-CLSP", "loai": "Phụ lục", "ty": "Phụ lục 03: Kế hoạch khảo sát và đề xuất bộ tiêu chí đánh giá chatbot", "bh": "Công ty VNPT-IT", "nn": "", "pl": "", "kh": "2025", "gc": ""}, {"tm": "2025", "stt": "13", "ngay": "25/11/2025", "nam": "2025", "so": "3513/VNPT-TNN-KDGP", "loai": "Công văn", "ty": "V/v đề nghị thử nghiệm ứng dụng AI trong Hệ thống Quản lý văn bản điện tử (VNPT iOffice)", "bh": "Viễn thông Thái Nguyên", "nn": "Công ty VNPT-IT", "pl": "", "kh": "Nhu cầu AI iOffice", "gc": "Theo nhu cầu Sở Tài chính tỉnh Thái Nguyên"}, {"tm": "2026", "stt": "1", "ngay": "24/11/2025", "nam": "2025", "so": "9821/VNPT-CLSP-TL", "loai": "Công văn", "ty": "V/v xây dựng kế hoạch thông minh hóa SPDV năm 2026", "bh": "Tập đoàn VNPT (Ban CLSP)", "nn": "VNPT-IT, VNPT-Media, VNPT-Net, VNPT-VinaPhone", "pl": "", "kh": "2026", "gc": ""}, {"tm": "2026", "stt": "2", "ngay": "20/12/2025", "nam": "2025", "so": "7838/BKHCN-TTCNTT", "loai": "Công văn", "ty": "V/v triển khai ứng dụng trợ lý ảo, tích hợp vào Hệ thống Quản lý văn bản và điều hành", "bh": "Bộ Khoa học và Công nghệ", "nn": "Các Bộ, ngành, địa phương", "pl": "", "kh": "Nhu cầu AI iOffice", "gc": ""}, {"tm": "2026", "stt": "3", "ngay": "13/01/2026", "nam": "2026", "so": "150/VNPTIT-CLSP", "loai": "Công văn (báo cáo)", "ty": "V/v Báo cáo tiến độ thực hiện TMH SPDV của VNPT-IT – Tháng 12/2025", "bh": "Công ty VNPT-IT", "nn": "Ban CLSP Tập đoàn", "pl": "PL01 – Tiến độ TMH SPDV VNPT-IT 2025_Tháng 12", "kh": "2025", "gc": "eOffice 18168"}, {"tm": "2026", "stt": "4", "ngay": "22/01/2026", "nam": "2026", "so": "262/VNPT.TPHCM-KDGP", "loai": "Công văn", "ty": "V/v phối hợp xây dựng phương án triển khai giải pháp AI tích hợp Hệ thống QLVB và Điều hành dùng chung TP.HCM", "bh": "Viễn thông TP. Hồ Chí Minh", "nn": "VNPT-IT, VNPT AI", "pl": "", "kh": "Nhu cầu AI iOffice", "gc": ""}, {"tm": "2026", "stt": "5", "ngay": "10/02/2026", "nam": "2026", "so": "493/VNPTIT-CLSP", "loai": "Công văn", "ty": "V/v Thực hiện GTM và thông báo các tính năng TMH SPDV 2025", "bh": "Công ty VNPT-IT", "nn": "Các TTGP chuyên ngành, các SBU, các Ban CLSP, KHĐT, CLgSP, KTHT", "pl": "PL01 – Danh sách tính năng TMH SPDV 2025", "kh": "2025", "gc": "Tên file lưu ghi 494, số trên văn bản là 493"}, {"tm": "2026", "stt": "6", "ngay": "03/03/2026", "nam": "2026", "so": "1532/VNPT-CN", "loai": "Công văn", "ty": "V/v Tổ chức triển khai các sáng kiến chiến lược AI first", "bh": "Tập đoàn VNPT (Ban Công nghệ)", "nn": "VNPT-AI; các Ban CLSP, Công nghệ; VNPT-VinaPhone, Net, Media, IT", "pl": "", "kh": "2026", "gc": "Căn cứ của VB 1153, 1154, 1537, 1767"}, {"tm": "2026", "stt": "7", "ngay": "16/03/2026", "nam": "2026", "so": "34/CV-DES", "loai": "Công văn", "ty": "V/v đề xuất phương án đóng gói, tính cước đối với các gói dịch vụ TMH trên vnEdu LMS", "bh": "TT Giải pháp Giáo dục số (DES)", "nn": "Ban CLSP VNPT-IT", "pl": "", "kh": "2025 (GTM)", "gc": "Thực hiện VB 493"}, {"tm": "2026", "stt": "8", "ngay": "16/03/2026", "nam": "2026", "so": "115/TTR-DAS-VPS", "loai": "Tờ trình", "ty": "V/v Đề xuất GTM gói cước TMH cho tính năng AI đã tích hợp trên sản phẩm VNPT iOffice", "bh": "TT Giải pháp Hành chính số (DAS)", "nn": "PTGĐ Nguyễn Minh Luân", "pl": "", "kh": "2025 (GTM)", "gc": "Thực hiện VB 493, 4475"}, {"tm": "2026", "stt": "9", "ngay": "24/03/2026", "nam": "2026", "so": "2210/VNPT-CLSP", "loai": "Công văn", "ty": "V/v giao nhiệm vụ triển khai ứng dụng AI trong phát triển sản phẩm, dịch vụ số", "bh": "Tập đoàn VNPT (Ban CLSP)", "nn": "Công ty VNPT-IT", "pl": "", "kh": "AI First", "gc": "Liên quan AI First, không phải KH TMH"}, {"tm": "2026", "stt": "10", "ngay": "01/04/2026", "nam": "2026", "so": "1149/VNPTIT-CLSP", "loai": "Công văn", "ty": "V/v đề nghị VNPT-AI ban hành CCKT và phối hợp triển khai các dịch vụ AI", "bh": "Công ty VNPT-IT", "nn": "Công ty VNPT-AI", "pl": "PL01 Thống nhất VNPT-AI; PL02 Phản hồi AI first; PL03 TMH SPDV 2025; kèm Biên bản bàn giao IT–AI (01/01/2026)", "kh": "2026", "gc": "eOffice 215551"}, {"tm": "2026", "stt": "10.1", "ngay": "01/01/2026", "nam": "2026", "so": "Không số (kèm 1149)", "loai": "Tài liệu kèm", "ty": "Biên bản bàn giao giữa Công ty VNPT-IT và Công ty VNPT-AI", "bh": "VNPT-IT và VNPT-AI", "nn": "", "pl": "", "kh": "2026", "gc": "Bản scan"}, {"tm": "2026", "stt": "11", "ngay": "01/04/2026", "nam": "2026", "so": "1153/VNPTIT-CLSP", "loai": "Công văn (báo cáo)", "ty": "V/v báo cáo kế hoạch thực hiện TMH SPDV 2026", "bh": "Công ty VNPT-IT", "nn": "Ban CLSP Tập đoàn", "pl": "PL01 – Danh sách tính năng TMH", "kh": "2026", "gc": "5 SP phối hợp VNPT-AI: vnEdu Connect, vnEdu LMS, vnPortal, VSR, HKD"}, {"tm": "2026", "stt": "12", "ngay": "01/04/2026", "nam": "2026", "so": "1154/VNPTIT-CLSP", "loai": "Công văn", "ty": "Vv: Rà soát bổ sung thông tin TMH SPDV 2026", "bh": "Công ty VNPT-IT", "nn": "Các TTGP chuyên ngành; các SBU", "pl": "PL03 – Mẫu Phiếu đề xuất TMH SPDV 2026", "kh": "2026", "gc": ""}, {"tm": "2026", "stt": "13", "ngay": "06/04/2026", "nam": "2026", "so": "54/VNPTIT-MDS-BA", "loai": "Công văn (báo cáo)", "ty": "V/v TT.MDS báo cáo rà soát bổ sung thông tin TMH SPDV 2026 theo VB 1154/VNPTIT-CLSP", "bh": "TT Giải pháp Dữ liệu số đa ngành (MDS)", "nn": "Ban CLSP VNPT-IT", "pl": "3 phiếu đề xuất: CST Data, DMIT, eDiG", "kh": "2026", "gc": ""}, {"tm": "2026", "stt": "13.1", "ngay": "06/04/2026", "nam": "2026", "so": "PL kèm 54/VNPTIT-MDS-BA", "loai": "Phụ lục", "ty": "Phiếu đề xuất thực hiện TMH SPDV 2026: VNPT CST Data", "bh": "TT MDS", "nn": "", "pl": "", "kh": "2026", "gc": ""}, {"tm": "2026", "stt": "13.2", "ngay": "06/04/2026", "nam": "2026", "so": "PL kèm 54/VNPTIT-MDS-BA", "loai": "Phụ lục", "ty": "Phiếu đề xuất thực hiện TMH SPDV 2026: VNPT DMIT (dữ liệu số ngành Công Thương)", "bh": "TT MDS", "nn": "", "pl": "", "kh": "2026", "gc": ""}, {"tm": "2026", "stt": "13.3", "ngay": "06/04/2026", "nam": "2026", "so": "PL kèm 54/VNPTIT-MDS-BA", "loai": "Phụ lục", "ty": "Phiếu đề xuất thực hiện TMH SPDV 2026: VNPT eDiG (Số hóa hồ sơ)", "bh": "TT MDS", "nn": "", "pl": "", "kh": "2026", "gc": ""}, {"tm": "2026", "stt": "14", "ngay": "23/04/2026", "nam": "2026", "so": "3299/VNPT-CLSP-TL", "loai": "Thông báo kết luận", "ty": "Kết luận của LĐTĐ tại cuộc họp báo cáo KH phát triển, nâng cấp SPDV của VNPT AI và TMH SPDV của VNPT-IT (họp 22/4/2026, PTGĐ Ngô Diên Hy chủ trì)", "bh": "Tập đoàn VNPT", "nn": "Các Ban CLSP, KHĐT, NL; VNPT-IT; VNPT AI", "pl": "", "kh": "2026", "gc": "Phê duyệt TMH 5 SPDV + HMIS; giao workshop iOffice, HIS"}, {"tm": "2026", "stt": "15", "ngay": "25/04/2026", "nam": "2026", "so": "150/TTR-CLSP", "loai": "Tờ trình", "ty": "V/v Báo cáo đề xuất bổ sung kế hoạch TMH SPDV 2026", "bh": "Ban CLSP VNPT-IT", "nn": "PTGĐ Nguyễn Minh Luân", "pl": "", "kh": "2026", "gc": "Tờ trình ban hành VB 1537"}, {"tm": "2026", "stt": "16", "ngay": "28/04/2026", "nam": "2026", "so": "1537/VNPTIT-CLSP", "loai": "Công văn (báo cáo)", "ty": "V/v báo cáo đề xuất bổ sung kế hoạch thực hiện TMH SPDV 2026", "bh": "Công ty VNPT-IT", "nn": "Ban CLSP Tập đoàn; Công ty VNPT-AI", "pl": "PL01 KH TMH Tập đoàn giao 2026; PL02 TMH iOffice_HIS 4.0; PL03 TMH SPDV 2025", "kh": "2026", "gc": "eOffice 285245"}, {"tm": "2026", "stt": "17", "ngay": "29/04/2026", "nam": "2026", "so": "464/QĐ-VNPT-CLSP", "loai": "Quyết định", "ty": "Về việc ban hành kế hoạch thông minh hóa Sản phẩm, dịch vụ cho Công ty VNPT-IT và VNPT AI trong năm 2026", "bh": "Tập đoàn VNPT", "nn": "Công ty VNPT-IT, Công ty VNPT AI", "pl": "PL01 Kế hoạch TMH; PL02 Mẫu báo cáo hằng tháng", "kh": "2026", "gc": ""}, {"tm": "2026", "stt": "18", "ngay": "07/05/2026", "nam": "2026", "so": "675/QĐ-VNPT IT-CLSP-NS", "loai": "Quyết định", "ty": "Về việc giao kế hoạch thông minh hóa sản phẩm, dịch vụ của VNPT-IT năm 2026", "bh": "Công ty VNPT-IT", "nn": "Các TTGP, PdM Line/Sản phẩm, các Ban", "pl": "PL01 KH TMH SPDV VNPT-IT 2026; PL02 Mẫu báo cáo hằng tháng", "kh": "2026", "gc": "eOffice 303991"}, {"tm": "2026", "stt": "19", "ngay": "15/05/2026", "nam": "2026", "so": "1767/VNPTIT-CLSP", "loai": "Công văn (báo cáo)", "ty": "V/v Báo cáo kết quả thực hiện TBKL số 3299/VNPT-CLSP-TL của LĐTĐ (TMH VNPT iOffice, VNPT HIS)", "bh": "Công ty VNPT-IT", "nn": "Ban CLSP Tập đoàn", "pl": "PL01 – Biên bản họp 29/4/2026", "kh": "2026", "gc": "eOffice 326438"}, {"tm": "2026", "stt": "19.1", "ngay": "29/04/2026", "nam": "2026", "so": "PL kèm 1767/VNPTIT-CLSP", "loai": "Phụ lục", "ty": "Biên bản họp trao đổi phương án TMH VNPT iOffice, VNPT HIS", "bh": "VNPT-IT, VNPT-AI, Ban CLSP Tập đoàn", "nn": "", "pl": "", "kh": "2026", "gc": "Bản scan 9 trang"}, {"tm": "2026", "stt": "20", "ngay": "15/05/2026", "nam": "2026", "so": "92/CV-SI-PD", "loai": "Công văn", "ty": "V/v Đăng ký bổ sung các nội dung thông minh hóa dịch vụ VNPT eContract, VNPT Invoice", "bh": "TT Giải pháp số doanh nghiệp (SI)", "nn": "Lãnh đạo Công ty; Ban CLSP", "pl": "Phiếu đề xuất eContract, Invoice", "kh": "2026", "gc": "Căn cứ VB 1686/VNPTIT-CLSP (11/05/2026)"}, {"tm": "2026", "stt": "20.1", "ngay": "15/05/2026", "nam": "2026", "so": "PL kèm 92/CV-SI-PD", "loai": "Phụ lục", "ty": "Phiếu đề xuất thực hiện TMH SPDV 2026: VNPT eContract", "bh": "TT SI", "nn": "", "pl": "", "kh": "2026", "gc": ""}, {"tm": "2026", "stt": "20.2", "ngay": "15/05/2026", "nam": "2026", "so": "PL kèm 92/CV-SI-PD", "loai": "Phụ lục", "ty": "Phiếu đề xuất thực hiện TMH SPDV 2026: VNPT Invoice (Hóa đơn điện tử)", "bh": "TT SI", "nn": "", "pl": "", "kh": "2026", "gc": ""}, {"tm": "2026", "stt": "20.3", "ngay": "15/05/2026", "nam": "2026", "so": "PL kèm 92/CV-SI-PD", "loai": "Phụ lục", "ty": "Phiếu đề xuất TMH SPDV 2026: VNPT eContract – bản có góp ý của PD", "bh": "TT SI", "nn": "", "pl": "", "kh": "2026", "gc": "Bản rà soát, không phải bản chính thức"}, {"tm": "2026", "stt": "21", "ngay": "28/05/2026", "nam": "2026", "so": "1958/VNPTIT-CLSP", "loai": "Công văn (thông báo)", "ty": "V/v Thông báo bổ sung tính năng thông minh hóa các SPDV (kết quả TMH năm 2025)", "bh": "Công ty VNPT-IT", "nn": "VNPT VinaPhone; các Viễn thông Tỉnh/TP", "pl": "PL01 Danh sách tính năng TMH 2025; PL02 Mẫu khảo sát hiệu quả AI", "kh": "2025", "gc": "eOffice 359745"}, {"tm": "2026", "stt": "22", "ngay": "02/07/2026", "nam": "2026", "so": "1049/QĐ-VNPT IT-CLSP", "loai": "Quyết định", "ty": "Về việc giao bổ sung kế hoạch thông minh hóa sản phẩm, dịch vụ của VNPT-IT năm 2026 (lần 1)", "bh": "Công ty VNPT-IT", "nn": "TT SI", "pl": "PL01 Giao bổ sung KH; PL02 Mẫu báo cáo; phiếu eContract, Invoice", "kh": "2026", "gc": "Giao bổ sung eContract, Hóa đơn điện tử. eOffice 464202"}, {"tm": "2026", "stt": "23", "ngay": "26/08/2026", "nam": "2026", "so": "3138/VTPT-KDGP", "loai": "Công văn", "ty": "V/v đề nghị hỗ trợ hoàn thiện, phát triển Hệ thống quản trị, điều hành phát triển KTXH tỉnh Phú Thọ", "bh": "Viễn thông Phú Thọ", "nn": "TGĐ Tập đoàn; VNPT-IT; VNPT AI", "pl": "", "kh": "Nhu cầu AI địa bàn", "gc": ""}, {"tm": "2026", "stt": "24", "ngay": "24/09/2026", "nam": "2026", "so": "1762/VNPT-CMU-KDGP", "loai": "Công văn (báo cáo)", "ty": "V/v báo cáo kết quả tích hợp AI vào Hệ thống iOffice và IOC", "bh": "Viễn thông Cà Mau", "nn": "Giám đốc Sở KH&CN tỉnh Cà Mau", "pl": "", "kh": "Nhu cầu AI iOffice", "gc": ""}, {"tm": "2026", "stt": "25", "ngay": "30/09/2026", "nam": "2026", "so": "06/TB-DMS", "loai": "Thông báo", "ty": "V/v Thông báo hoàn thành các tính năng Trợ lý AI HIS", "bh": "TT Giải pháp Y tế số (DMS)", "nn": "VNPT-VinaPhone; các VNPT Tỉnh/TP", "pl": "", "kh": "2026", "gc": ""}];
-const $ = id => document.getElementById(id);
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fold = s => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase();
+const fmt = v => v == null ? '–' : (Math.round(v*10)/10).toLocaleString('vi-VN');
+const uniq = a => [...new Set(a.filter(Boolean))].sort((x,y)=>x.localeCompare(y,'vi'));
+let HM = [], VB = {van_ban:[],dan_chieu:[]}, NAM = [];
+
+const ttCls = t => ({'Hoàn thành':'s-done','Đang thực hiện':'s-run','Chưa đến hạn':'s-wait','Chưa ban hành':'s-warn','Đề xuất':'s-plan'}[t] || 's-wait');
+const pvShort = v => v.startsWith('TĐ giao') ? 'TĐ giao' : v.startsWith('Công ty') ? 'Công ty giao' : v.startsWith('Ngoài') ? 'Ngoài 12 ND' : v.startsWith('Đề xuất trong') ? 'Trong KH NCPB' : v;
+const pvRank = v => v.startsWith('TĐ') ? 0 : v.startsWith('Công ty') ? 1 : v.startsWith('Giao mới') ? 0 : 2;
+const linkify = s => esc(s).replace(/https?:\/\/[^\s<]+/g, u => `<a href="${u}" target="_blank" rel="noopener">${u}</a>`);
+const pctOf = it => it.pct == null ? (it.tt==='Hoàn thành'?1:0) : it.pct;
+
+function stats(list){
+  const sp = uniq(list.map(i=>i.sp)).length;
+  const done = list.filter(i=>i.tt==='Hoàn thành').length;
+  const sum = k => list.reduce((s,i)=> s + (k==='mm_it'||k==='mm_it_th' ? (i.mm_it_ncpt?0:(i[k]||0)) : (i[k]||0)), 0);
+  return {sp, n:list.length, done, it:sum('mm_it'), itth:sum('mm_it_th'), ai:sum('mm_ai'), aith:sum('mm_ai_th')};
+}
+
+/* ---------- Tabs ---------- */
+function renderTabs(cur){
+  const t = [['tongquan','Tổng quan']].concat(NAM.map(n=>[String(n.nam), `Năm ${n.nam}<small>${n.trang_thai}</small>`])).concat([['vanban','Văn bản']]);
+  $('#tabs').innerHTML = t.map(([k,l])=>`<a href="#${k}" class="${k===cur?'on':''}">${l}</a>`).join('');
+}
+
+/* ---------- Tổng quan ---------- */
+function renderTongQuan(){
+  const cards = NAM.map(n=>{
+    const L = HM.filter(i=>i.nam===n.nam), s = stats(L);
+    const mm = n.mm ? `${fmt(n.mm.it_dk)} / ${fmt(n.mm.ai_dk)}` : 'Không theo dõi';
+    return `<div class="card yr" onclick="location.hash='${n.nam}'">
+      <div class="h"><span class="n">${n.nam}</span><span class="pill ${n.nam===2027?'s-plan':n.nam===2026?'s-run':'s-done'}">${esc(n.trang_thai)}</span></div>
+      <div class="small muted">${esc(n.tieu_de)}</div>
+      <div class="nums"><div><b>${s.sp}</b><span>sản phẩm</span></div><div><b>${s.n}</b><span>hạng mục</span></div><div><b>${n.nam===2027?'–':s.done}</b><span>hoàn thành</span></div></div>
+      <div class="small">MM đăng ký IT / AI: <b>${mm}</b></div>
+      <div class="go" style="margin-top:8px">Xem chi tiết năm ${n.nam} →</div></div>`;}).join('');
+  // Ma trận sản phẩm × năm
+  const key = sp => ({'vnEdu Connect':'vnEdu / Connect / Teacher','vnEdu / Connect / Teacher':'vnEdu / Connect / Teacher','vnEdu LMS / E-Learning':'vnEdu LMS','vnEdu LMS':'vnEdu LMS','HIS hợp nhất':'VNPT HIS / HMIS','VNPT HMIS':'VNPT HIS / HMIS','vnEdu Hss':'vnEdu HSS'}[sp] || sp);
+  const m = {};
+  HM.forEach(i=>{const k=key(i.sp); m[k]=m[k]||{dv:i.dv}; m[k][i.nam]=(m[k][i.nam]||0)+1;});
+  const rows = Object.entries(m).sort((a,b)=>a[1].dv.localeCompare(b[1].dv)||a[0].localeCompare(b[0],'vi'));
+  const mx = rows.map(([sp,v])=>`<tr><td>${esc(sp)}</td><td>${esc(v.dv)}</td>${NAM.map(n=>`<td class="c">${v[n.nam]?`<a href="#${n.nam}" onclick="presetSP('${esc(sp)}')">${v[n.nam]}</a>`:'<span class="muted">–</span>'}</td>`).join('')}</tr>`).join('');
+  $('#v-tongquan').innerHTML = `<h2>Tổng quan các năm</h2><div class="yrs">${cards}</div>
+   <h2>Sản phẩm qua các năm <span class="small muted">(số hạng mục; bấm số để xem chi tiết)</span></h2>
+   <div class="card tbl mx"><table><thead><tr><th>Sản phẩm</th><th>Đơn vị</th>${NAM.map(n=>`<th class="c">${n.nam}</th>`).join('')}</tr></thead><tbody>${mx}</tbody></table></div>`;
+}
+let PRESET_SP = '';
+function presetSP(sp){ PRESET_SP = sp; }
+
+/* ---------- Năm ---------- */
+const F = {q:'',dv:'',sp:'',pv:'',loai:'',tt:''};
+function renderNam(nam){
+  const n = NAM.find(x=>x.nam===nam), L = HM.filter(i=>i.nam===nam), s = stats(L);
+  const mm = n.mm;
+  const kp = [
+    [s.sp,'sản phẩm'],[s.n,'hạng mục'],
+    nam===2027 ? [L.filter(i=>i.pham_vi==='Giao mới').length,'giao mới'] : [`${s.done}/${s.n}`,'hoàn thành',s.n?s.done/s.n:0],
+    nam===2027 ? [L.filter(i=>i.pham_vi!=='Giao mới').length,'trong KH nâng cấp PB'] : [L.filter(i=>i.tt==='Đang thực hiện').length,'đang thực hiện'],
+    ...(!mm ? [[L.filter(i=>i.loai==='Tính năng AI').length+' / '+L.filter(i=>i.loai==='UI/UX').length,'tính năng AI / UI-UX'],[L.filter(i=>i.tt==='Chưa ban hành').length,'gói cước chưa ban hành']] : [
+    [mm?`${fmt(mm.it_th ?? mm.it_dk)}${mm.it_th!=null?' / '+fmt(mm.it_dk):''}`:'–', mm? (mm.it_th!=null?'MM VNPT-IT đã TH / ĐK':'MM VNPT-IT đề xuất'):'MM VNPT-IT (không theo dõi)', mm&&mm.it_th!=null?mm.it_th/mm.it_dk:null],
+    [mm?`${fmt(mm.ai_th ?? mm.ai_dk)}${mm.ai_th!=null?' / '+fmt(mm.ai_dk):''}`:'–', mm? (mm.ai_th!=null?'MM VNPT AI đã TH / ĐK':'MM VNPT AI đề xuất'):'MM VNPT AI (không theo dõi)', mm&&mm.ai_th!=null?mm.ai_th/mm.ai_dk:null]])
+  ].map(([b,t,p])=>`<div class="card kpi"><b>${b}</b><span>${t}</span>${p!=null&&p!==undefined?`<div class="bar"><i style="width:${Math.round(p*100)}%"></i></div>`:''}</div>`).join('');
+  const opt = (id,lab,vals) => `<select id="${id}"><option value="">${lab}</option>${vals.map(v=>`<option>${esc(v)}</option>`).join('')}</select>`;
+  $('#v-nam').innerHTML = `
+   <div class="yhead"><div><h2>${esc(n.tieu_de)}</h2><div class="small muted">${esc(n.bao_cao)}</div></div>
+     <span class="pill ${nam===2027?'s-plan':nam===2026?'s-run':'s-done'}">${esc(n.trang_thai)}</span></div>
+   <div class="kpis">${kp}</div>
+   <details class="info card pad"><summary>Căn cứ và điểm chính</summary><div class="cols">
+     <div><b class="small">Căn cứ</b><ul class="small">${n.can_cu.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>
+     <div><b class="small">Điểm chính</b><ul class="small">${n.diem_chinh.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
+     ${mm?`<div class="small muted" style="margin-top:6px">MM: ${esc(mm.ghi_chu)}</div>`:''}</div></div></details>
+   <div class="filters">
+     <input type="search" id="fq" placeholder="Tìm nội dung, sản phẩm, đầu mối… (gõ không dấu được)">
+     ${opt('fdv','Đơn vị',uniq(L.map(i=>i.dv)))}${opt('fsp','Sản phẩm',uniq(L.map(i=>i.sp)))}
+     ${opt('fpv','Phạm vi giao',uniq(L.map(i=>i.pham_vi)).map(pvShort).filter((v,i,a)=>a.indexOf(v)===i))}${opt('floai','Loại',uniq(L.map(i=>i.loai)))}
+     ${nam===2027?'':opt('ftt','Trạng thái',uniq(L.map(i=>i.tt)))}
+     <button class="btn" id="bx">Mở/đóng tất cả</button><span class="cnt" id="cnt"></span>
+   </div>
+   <div id="groups"></div>
+   <h2>Văn bản năm ${nam} <span class="small muted">(<a href="#vanban" onclick="VBF.tm='${nam===2027?'':nam}'">xem đầy đủ</a>)</span></h2>
+   <div id="yvb"></div>`;
+  Object.keys(F).forEach(k=>F[k]='');
+  if (PRESET_SP){ const o=[...$('#fsp').options].find(o=>o.value===PRESET_SP || PRESET_SP.includes(o.value) || o.value.includes(PRESET_SP.split(' / ')[0])); if(o){$('#fsp').value=o.value;F.sp=o.value;} PRESET_SP=''; }
+  [['fq','q'],['fdv','dv'],['fsp','sp'],['fpv','pv'],['floai','loai'],['ftt','tt']].forEach(([id,k])=>{const el=$('#'+id); if(el) el.addEventListener('input',()=>{F[k]=el.value; drawGroups(nam);});});
+  $('#bx').onclick = () => { const ds=[...document.querySelectorAll('#groups details')]; const open=!ds.every(d=>d.open); ds.forEach(d=>d.open=open); };
+  drawGroups(nam);
+  const vb = VB.van_ban.filter(v=>v.tm===String(nam) && !v.stt.includes('.'));
+  $('#yvb').innerHTML = vb.length ? `<div class="card tbl"><table><thead><tr><th>Ngày</th><th>Số văn bản</th><th>Trích yếu</th><th>Ban hành</th></tr></thead><tbody>${vb.map(v=>`<tr><td class="r">${v.ngay}</td><td class="so">${esc(v.so)}</td><td>${esc(v.ty)}</td><td class="small">${esc(v.bh)}</td></tr>`).join('')}</tbody></table></div>`
+    : `<div class="card empty">Chưa có văn bản năm ${nam} trong danh mục.</div>`;
+}
+function drawGroups(nam){
+  const q = fold(F.q);
+  const L = HM.filter(i=>i.nam===nam && (!F.dv||i.dv===F.dv) && (!F.sp||i.sp===F.sp) && (!F.pv||pvShort(i.pham_vi)===F.pv) && (!F.loai||i.loai===F.loai) && (!F.tt||i.tt===F.tt)
+     && (!q || fold([i.nd,i.mt,i.sp,i.kq,i.gc,i.pdm,i.cq,i.nhom].join(' ')).includes(q)));
+  $('#cnt').textContent = `${L.length} hạng mục`;
+  const by = {}; L.forEach(i=>{(by[i.sp]=by[i.sp]||[]).push(i);});
+  const rk = sp => Math.min(...by[sp].map(i=>pvRank(i.pham_vi)));
+  const ks = Object.keys(by).sort((a,b)=>rk(a)-rk(b)||by[a][0].dv.localeCompare(by[b][0].dv)||a.localeCompare(b,'vi'));
+  const many = L.length > 30 && !q && !F.sp;
+  $('#groups').innerHTML = ks.length ? ks.map(sp=>{
+    const G = by[sp], s = stats(G), p = G.reduce((a,i)=>a+pctOf(i),0)/G.length;
+    const pdm = uniq(G.map(i=>i.pdm)).join(', '), cq = uniq(G.map(i=>i.cq)).join(', ');
+    const mmTxt = (s.it||s.ai) ? `MM IT ${fmt(s.it)} · AI ${fmt(s.ai)}` : '';
+    return `<details class="card prod" ${many?'':'open'}><summary>
+      <div><span class="nm">${esc(sp)}</span> <span class="chip">${esc(G[0].dv)}</span>
+        ${pdm?`<div class="small muted" style="margin-left:16px">PdM: ${esc(pdm)}${cq?' · Chuyên quản: '+esc(cq):''}</div>`:''}</div>
+      <div class="meta"><span>${G.length} hạng mục</span>${mmTxt?`<span>${mmTxt}</span>`:''}
+        ${nam!==2027?`<span class="prog"><span class="bar"><i style="width:${Math.round(p*100)}%"></i></span>${Math.round(p*100)}%</span>`:''}</div></summary>
+      <div class="tbl"><table class="items"><thead><tr><th style="width:46%">Nội dung</th><th>Loại</th><th>Phạm vi</th><th class="r">Hạn</th><th class="r">MM IT</th><th class="r" title="Đăng ký; TH = đã thực hiện khi không có số đăng ký">MM AI</th><th>Trạng thái</th></tr></thead><tbody>
+      ${G.map(i=>`<tr onclick="openItem(${i.id})"><td><div class="nd">${esc(i.nd)}</div>${i.nhom?`<div class="sub">${esc(i.nhom)}</div>`:''}</td>
+        <td><span class="chip">${esc(i.loai)}</span></td><td><span class="chip" title="${esc(i.pham_vi)}">${esc(pvShort(i.pham_vi))}</span></td><td class="r">${esc(i.han)}</td>
+        <td class="r">${i.mm_it!=null?fmt(i.mm_it)+(i.mm_it_ncpt?'*':''):'–'}</td><td class="r">${i.mm_ai!=null?fmt(i.mm_ai):(i.mm_ai_th!=null?fmt(i.mm_ai_th)+' TH':'–')}</td>
+        <td><span class="pill ${ttCls(i.tt)}">${esc(i.tt)}${i.tt==='Đang thực hiện'&&i.pct?' '+Math.round(i.pct*100)+'%':''}</span></td></tr>`).join('')}
+      </tbody></table></div></details>`;}).join('') + (L.some(i=>i.mm_it_ncpt)?'<div class="small muted">* MM VNPT-IT đã đăng ký trong kế hoạch NCPT, không cộng vào tổng TMH.</div>':'')
+    : '<div class="card empty">Không có hạng mục phù hợp bộ lọc.</div>';
+}
+function openItem(id){
+  const i = HM.find(x=>x.id===id); if(!i) return;
+  const row = (k,v) => v!=null && v!=='' ? `<dt>${k}</dt><dd>${linkify(v)}</dd>` : '';
+  const mm = (a,b) => a==null&&b==null ? '' : `${a!=null?fmt(a)+' đăng ký':''}${a!=null&&b!=null?' · ':''}${b!=null?fmt(b)+' đã thực hiện':''}`;
+  $('#drawer').innerHTML = `<div class="dh"><div><div class="small muted">${i.nam} · ${esc(i.dv)} · ${esc(i.sp)}</div><h3>${esc(i.nd)}</h3></div><button class="x" onclick="closeItem()" aria-label="Đóng">×</button></div>
+   <div class="db"><dl>
+    ${row('Trạng thái', i.tt + (i.pct!=null&&i.pct<1&&i.pct>0?` (${Math.round(i.pct*100)}%)`:''))}${row('Loại', i.loai)}${row('Nhóm', i.nhom)}${row('Phạm vi giao', i.pham_vi)}
+    ${row('Phiên bản', i.phien_ban)}${row('Thời hạn', i.han)}${row('MM VNPT-IT', mm(i.mm_it,i.mm_it_th))}${row('MM VNPT AI', mm(i.mm_ai,i.mm_ai_th))}
+    ${row('Đầu mối PdM', i.pdm)}${row('Chuyên quản CLSP', i.cq)}
+    ${row('Mục tiêu / kết quả cần đạt', i.mt)}${row('Đã thực hiện', i.kq)}${row('Ghi chú', i.gc)}</dl>
+    ${i.moc&&i.moc.length?`<div class="sec">Các mốc</div><div class="tbl card" style="margin-top:6px"><table><thead><tr><th>Mốc</th><th class="r">Hạn</th><th>Tiến độ / kết quả</th></tr></thead><tbody>${i.moc.map(m=>`<tr><td>${esc(m.nd)}</td><td class="r">${esc(m.han)}</td><td class="small">${m.pct!=null?Math.round(m.pct*100)+'%':(m.tt||'')}${m.kq?' – '+esc(m.kq):''}</td></tr>`).join('')}</tbody></table></div>`:''}
+   </div>`;
+  $('#drawer').classList.add('on'); $('#dim').classList.add('on');
+}
+function closeItem(){ $('#drawer').classList.remove('on'); $('#dim').classList.remove('on'); }
+$('#dim').onclick = closeItem; document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeItem(); });
+
+/* ---------- Văn bản ---------- */
+const VBF = {tm:'',q:'',loai:'',pl:true};
 const pillCls = l => l.startsWith('Quyết định') ? 'p-qd' : l.startsWith('Thông báo') ? 'p-tb' : l.startsWith('Tờ trình') ? 'p-tt' : (l==='Phụ lục'||l==='Tài liệu kèm') ? 'p-pl' : 'p-cv';
-const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const fold = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase();
-function fill(sel, vals){ [...new Set(vals)].sort().forEach(v=>{const o=document.createElement('option');o.textContent=v;sel.appendChild(o);}); }
-fill($('fNam'), DATA.map(d=>d.nam)); fill($('fLoai'), DATA.map(d=>d.loai)); fill($('fKH'), DATA.map(d=>d.kh));
-const main = DATA.filter(d=>!d.stt.includes('.'));
-const cnt = k => main.filter(d=>d.loai.startsWith(k)).length;
-$('stats').innerHTML = [
-  [main.length,'văn bản có số'],[cnt('Quyết định'),'quyết định'],[cnt('Công văn'),'công văn'],[DATA.length-main.length,'phụ lục, tài liệu kèm']
-].map(([n,t])=>`<div class="stat"><b>${n}</b><span>${t}</span></div>`).join('');
-function render(){
-  const tm=$('fTM').value, q = fold($('q').value.trim()), nam=$('fNam').value, loai=$('fLoai').value, kh=$('fKH').value, pl=$('fPL').checked;
-  const rows = DATA.filter(d => (!tm||d.tm===tm) && (!nam||d.nam===nam) && (!loai||d.loai===loai) && (!kh||d.kh===kh) && (pl||!d.stt.includes('.'))
-    && (!q || fold([d.so,d.ty,d.bh,d.nn,d.pl,d.gc,d.ngay].join(' ')).includes(q)));
-  $('tb').innerHTML = rows.length ? rows.map(d=>`<tr class="${d.stt.includes('.')?'pl':''}">
-    <td class="nw">${d.tm}</td><td class="nw">${d.stt}</td><td class="nw">${d.ngay}</td><td class="so">${esc(d.so)}</td>
+function renderVanBan(){
+  const D = VB.van_ban;
+  $('#v-vanban').innerHTML = `<h2>Danh mục văn bản có số</h2>
+   <div class="small muted" style="margin-bottom:8px">Văn bản PDF đã có số và phụ lục kèm theo trong thư mục TMH 2025, 2026. Báo cáo tiến độ hằng tháng chỉ có bản Word nên chưa đưa vào.</div>
+   <div class="filters"><input type="search" id="vq" placeholder="Tìm số, trích yếu, đơn vị… (ví dụ: 464, HKD, iOffice)">
+    <select id="vtm"><option value="">Thư mục: tất cả</option><option value="2025">Thư mục TMH 2025</option><option value="2026">Thư mục TMH 2026</option></select>
+    <select id="vloai"><option value="">Loại: tất cả</option>${uniq(D.map(d=>d.loai)).map(v=>`<option>${esc(v)}</option>`).join('')}</select>
+    <label class="small"><input type="checkbox" id="vpl" checked> Hiện phụ lục</label><span class="cnt" id="vcnt"></span></div>
+   <div class="card tbl"><table><thead><tr><th>Thư mục</th><th>STT</th><th class="r">Ngày</th><th>Số văn bản</th><th>Loại</th><th>Trích yếu</th><th>Ban hành</th></tr></thead><tbody id="vtb"></tbody></table></div>
+   <h2>Văn bản được dẫn chiếu, chưa có bản PDF</h2>
+   <div class="card tbl"><table><thead><tr><th>Số văn bản</th><th class="r">Ngày</th><th>Trích yếu (theo nơi dẫn chiếu)</th></tr></thead><tbody>
+   ${VB.dan_chieu.map(r=>`<tr><td class="so">${esc(r.so)}</td><td class="r">${esc(r.ngay)}</td><td>${esc(r.ty)}</td></tr>`).join('')}</tbody></table></div>`;
+  $('#vtm').value = VBF.tm;
+  [['vq','q'],['vtm','tm'],['vloai','loai']].forEach(([id,k])=>$('#'+id).addEventListener('input',e=>{VBF[k]=e.target.value; drawVB();}));
+  $('#vpl').addEventListener('input',e=>{VBF.pl=e.target.checked; drawVB();});
+  drawVB();
+}
+function drawVB(){
+  const q = fold(VBF.q);
+  const R = VB.van_ban.filter(d=>(!VBF.tm||d.tm===VBF.tm)&&(!VBF.loai||d.loai===VBF.loai)&&(VBF.pl||!d.stt.includes('.'))&&(!q||fold([d.so,d.ty,d.bh,d.nn,d.pl,d.gc,d.ngay].join(' ')).includes(q)));
+  $('#vcnt').textContent = `${R.length} dòng`;
+  $('#vtb').innerHTML = R.length ? R.map(d=>`<tr class="${d.stt.includes('.')?'pl':''}"><td>${d.tm}</td><td>${d.stt}</td><td class="r">${d.ngay}</td><td class="so">${esc(d.so)}</td>
     <td><span class="pill ${pillCls(d.loai)}">${esc(d.loai)}</span></td>
     <td>${esc(d.ty)}${d.pl?`<div class="sub">Phụ lục: ${esc(d.pl)}</div>`:''}${d.gc?`<div class="sub">Ghi chú: ${esc(d.gc)}</div>`:''}</td>
-    <td>${esc(d.bh)}${d.nn?`<div class="sub">Gửi: ${esc(d.nn)}</div>`:''}</td><td>${esc(d.kh)}</td></tr>`).join('')
-    : '<tr><td colspan="8" class="muted">Không có văn bản phù hợp.</td></tr>';
+    <td class="small">${esc(d.bh)}${d.nn?`<div class="sub">Gửi: ${esc(d.nn)}</div>`:''}</td></tr>`).join('') : '<tr><td colspan="7" class="empty">Không có văn bản phù hợp.</td></tr>';
 }
-['q','fTM','fNam','fLoai','fKH','fPL'].forEach(id=>$(id).addEventListener('input',render));
-render();
+
+/* ---------- Router ---------- */
+function route(){
+  const h = decodeURIComponent(location.hash.slice(1)) || 'tongquan';
+  const nam = NAM.find(n=>String(n.nam)===h);
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+  closeItem();
+  if (nam){ renderNam(nam.nam); $('#v-nam').classList.add('on'); renderTabs(h); }
+  else if (h==='vanban'){ renderVanBan(); $('#v-vanban').classList.add('on'); renderTabs(h); }
+  else { renderTongQuan(); $('#v-tongquan').classList.add('on'); renderTabs('tongquan'); }
+  window.scrollTo(0,0);
+}
+Promise.all(['data/nam.json','data/hang_muc.json','data/van_ban.json'].map(u=>fetch(u).then(r=>r.json())))
+ .then(([n,h,v])=>{NAM=n;HM=h;VB=v;window.addEventListener('hashchange',route);route();})
+ .catch(()=>{$('#main').innerHTML='<div class="card empty">Không tải được dữ liệu. Vui lòng tải lại trang.</div>';});
 </script>
 </body>
 </html>

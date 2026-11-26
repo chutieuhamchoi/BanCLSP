@@ -1,0 +1,56 @@
+[
+ {
+  "nam": 2025,
+  "trang_thai": "Đã kết thúc",
+  "tieu_de": "Kết quả TMH năm 2025",
+  "can_cu": [
+   "QĐ 12/QĐ-VNPT-CLSP (14/03/2025) – Tập đoàn giao kế hoạch",
+   "VB 7431/VNPT-CLSP (12/09/2025) – Tập đoàn điều chỉnh kế hoạch",
+   "QĐ 710/QĐ-VNPT IT-CLSP (06/05/2025) – Công ty giao; điều chỉnh QĐ 779 (15/05/2025), QĐ 1566 (18/09/2025)",
+   "QĐ 1908/QĐ-VNPT-IT-NS (11/12/2024), QĐ 873 (29/05/2025) – Ban chỉ đạo TMH 2025–2026"
+  ],
+  "bao_cao": "VB 150/VNPTIT-CLSP (13/01/2026) – báo cáo tháng 12/2025",
+  "diem_chinh": [
+   "9 sản phẩm theo văn bản báo cáo (thêm vnCitizens ở bảng chi tiết), tất cả báo cáo hoàn thành 100%",
+   "Chưa ban hành gói cước chính thức cho vnEdu LMS, vnPortal, VNPT iOffice do chưa thống nhất cơ chế kinh tế với VNPT AI",
+   "VNPT iGate: đề xuất không GTM gói cước vì mô hình TTHC chuyển sang cấp bộ",
+   "Năm 2025 không theo dõi MM trong báo cáo tiến độ"
+  ],
+  "mm": null
+ },
+ {
+  "nam": 2026,
+  "trang_thai": "Đang thực hiện",
+  "tieu_de": "Tiến độ TMH năm 2026 (số liệu đến tháng 10)",
+  "can_cu": [
+   "QĐ 464/QĐ-VNPT-CLSP (29/04/2026) – Tập đoàn giao kế hoạch cho VNPT-IT và VNPT AI",
+   "QĐ 675/QĐ-VNPT IT-CLSP-NS (07/05/2026) – Công ty giao",
+   "QĐ 1049/QĐ-VNPT IT-CLSP (02/07/2026) – giao bổ sung lần 1 (eContract, Hóa đơn điện tử)",
+   "TBKL 3299/VNPT-CLSP-TL (23/04/2026) – kết luận của Lãnh đạo Tập đoàn"
+  ],
+  "bao_cao": "Báo cáo tiến độ và nguồn lực tháng 10/2026 (eOffice 810952/VBKS)",
+  "diem_chinh": [
+   "Tập đoàn giao 6 sản phẩm, 12 nội dung; Công ty giao thêm eContract, Hóa đơn điện tử",
+   "VNPT iOffice (V6) theo dõi riêng, không tính vào 12 nội dung; VNPT AI đã thực hiện 45 MM",
+   "MM VNPT-IT của VNPT HKD đã đăng ký trong kế hoạch NCPT, không cộng vào tổng TMH",
+   "HMIS dự báo dịch bệnh: chưa PoC được vì thiếu hạ tầng"
+  ],
+  "mm": {"it_dk": 70.4, "it_th": 62.4, "ai_dk": 191.6, "ai_th": 178.6, "ghi_chu": "Phạm vi Tập đoàn giao, không tính iOffice"}
+ },
+ {
+  "nam": 2027,
+  "trang_thai": "Kế hoạch đề xuất",
+  "tieu_de": "Kế hoạch TMH năm 2027 (đề xuất, chốt 20/11/2026)",
+  "can_cu": [
+   "VB 433/CV-CLSP (21/10/2026) – Tập đoàn triển khai đánh giá kế hoạch PTNC, TMH 2027",
+   "Biểu mẫu đề xuất kế hoạch SPDV 2027 – Mẫu 5 Đề xuất Thông minh hóa"
+  ],
+  "bao_cao": "Biểu mẫu đề xuất kế hoạch SPDV 2027 FN v1.1 (sheet Đề xuất Thông minh hóa)",
+  "diem_chinh": [
+   "19 SPDV, 36 hạng mục; 464,8 MM gồm VNPT-IT 227,6 và VNPT AI 237,2",
+   "4 hạng mục VNPT HKD (38,7 MM) đề xuất trong kế hoạch nâng cấp phiên bản",
+   "Chi phí khác 34 triệu đồng (eDiG, vnEdu HSS, vnEdu LMS, Smart-IR)"
+  ],
+  "mm": {"it_dk": 227.6, "it_th": null, "ai_dk": 237.2, "ai_th": null, "ghi_chu": "Đề xuất, chưa phê duyệt"}
+ }
+]
