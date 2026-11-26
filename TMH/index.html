@@ -180,11 +180,12 @@ function phieuSection(L){
   const by = {}; L.forEach(i=>{(by[i.sp]=by[i.sp]||{dv:i.dv,n:0}).n++;});
   const sps = Object.keys(by).sort((a,b)=>by[a].dv.localeCompare(by[b].dv)||a.localeCompare(b,'vi'));
   const co = sps.filter(sp=>phieuOf(sp).length);
+  const nf = new Set(PH.phieu.filter(p=>p.sp).map(p=>p.url)).size;
   const ngoai = PH.phieu.filter(p=>!p.sp);
   const fl = P => P.map(p=>`<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.file)}</a>`).join('<br>');
   const rows = sps.map(sp=>{const P=phieuOf(sp); return `<tr><td>${esc(sp)}</td><td>${esc(by[sp].dv)}</td><td class="c">${by[sp].n}</td><td class="c">${P.length||'–'}</td>
-    <td><span class="pill ${P.length?'s-done':'s-warn'}">${P.length?'Có phiếu':'Chưa có phiếu'}</span></td><td class="small">${P.length?fl(P):''}</td></tr>`;}).join('');
-  return `<details class="card pad" open><summary><b>Đối chiếu phiếu đăng ký TMH</b> <span class="small muted">· ${co.length}/${sps.length} sản phẩm có phiếu · ${sps.length-co.length} chưa có · ${ngoai.length} phiếu ngoài danh sách đăng ký · cập nhật ${esc(PH.cap_nhat)}</span></summary>
+    <td><span class="pill ${P.length?'s-done':'s-warn'}">${P.length?'Có phiếu':'Chưa có phiếu'}</span></td><td class="small">${P.length?fl(P):''}${P.filter(p=>p.gc).map(p=>`<div class="sub" style="color:var(--amber)">${esc(p.gc)}</div>`).join('')}</td></tr>`;}).join('');
+  return `<details class="card pad" open><summary><b>Đối chiếu phiếu đăng ký TMH</b> <span class="small muted">· ${co.length}/${sps.length} sản phẩm có phiếu (${nf} file) · ${sps.length-co.length} chưa có · ${ngoai.length} phiếu ngoài danh sách đăng ký · cập nhật ${esc(PH.cap_nhat)}</span></summary>
    <div class="small muted" style="margin:6px 0">${esc(PH.ghi_chu)}</div>
    <div class="tbl"><table><thead><tr><th>Sản phẩm</th><th>Đơn vị</th><th class="c">Số hạng mục</th><th class="c">Số phiếu</th><th>Trạng thái phiếu</th><th>File phiếu</th></tr></thead><tbody>${rows}</tbody></table></div>
    ${ngoai.length?`<div class="sec" style="margin-top:10px"><b class="small">Phiếu chưa có trong danh sách đăng ký TMH 2027</b></div>
