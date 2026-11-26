@@ -1,0 +1,28 @@
+{
+  "cap_nhat": "26/11/2026",
+  "ghi_chu": "Đối chiếu theo tên file phiếu đăng ký trên Google Drive các đơn vị gửi; chưa rà soát nội dung phiếu.",
+  "thu_muc": {
+    "MDS": "https://drive.google.com/drive/folders/1SiXUtW5SpRvDJb_y3NV7pZGyGhztN1lp",
+    "SI": "https://drive.google.com/drive/folders/1Fy5Jusv-52k32bHYS_DHvRPQReKaIOZz",
+    "DAS": "https://drive.google.com/drive/folders/1_nKgKz7ZngNJ32nycZH7wY6uft-1rZFh",
+    "DGS": "https://drive.google.com/drive/folders/1ovWY1hLUiZVOPDRBC1Nn7lLLs46_SojI"
+  },
+  "phieu": [
+    {"sp": "VNPT IOC", "dv": "DGS", "file": "Phieu_dang_ky_TMH_VNPT_IOC_2027.docx", "url": "https://drive.google.com/file/d/1wTNCHl11cYK5YnGY3pyHZ5Y2pMygG81j/view", "ngay": "17/11/2026"},
+    {"sp": "vnPortal", "dv": "DGS", "file": "Phieu_dang_ky_TMH_vnPortal_2027.docx", "url": "https://drive.google.com/file/d/1ti-Hyf5_jAUh1uuylRE7fxIKb8jrgSPu/view", "ngay": "17/11/2026"},
+    {"sp": "VNPT Data Lakehouse", "dv": "DGS", "file": "Phieu_dang_ky_TMH_VNPT_Data_Lakehouse_2027.docx", "url": "https://drive.google.com/file/d/1FmZQDr7PGxboIYFtPtM4iszlJszwzl5U/view", "ngay": "17/11/2026"},
+    {"sp": "VNPT VSR", "dv": "DGS", "file": "Phieu_dang_ky_TMH_VNPT_VSR_2027_v1.docx", "url": "https://drive.google.com/file/d/1AaDcZ6uNrtm2qntjBdyRwokroNfk6u6b/view", "ngay": "17/11/2026"},
+    {"sp": "VNPT eDiG", "dv": "MDS", "file": "09_VNPT eDIG_PĐK TMH SPDV 2027.docx", "url": "https://drive.google.com/file/d/14sFZAkvMunZ1q1Gt5ZG-8fCCeO2WWEzK/view", "ngay": "13/11/2026"},
+    {"sp": "VNPT DMIT Platform", "dv": "MDS", "file": "10_VNPT DMIT Platform_PĐK TMH SPDV 2027.docx", "url": "https://drive.google.com/file/d/1tLjABU7sU9tQgectvDDVRcqIOy5e_H0E/view", "ngay": "15/11/2026"},
+    {"sp": "VNPT Smart Tourism", "dv": "MDS", "file": "11_VNPT Smart Tourism_PĐK TMH SPDV 2027.docx", "url": "https://drive.google.com/file/d/1y4yw8781qcVep2swWonn6oDxNlUFXjDd/view", "ngay": "14/11/2026"},
+    {"sp": "VNPT Invoice", "dv": "SI", "file": "Phieu_dang_ky_TMH_2027_Line_Invoice_14_11.docx", "url": "https://drive.google.com/file/d/1_Pxba4KPPRElMsZxyn0_BQykPyf7JHAq/view", "ngay": "16/11/2026"},
+    {"sp": "VNPT eContract", "dv": "SI", "file": "Phieu dang ky TMH eContract 2027 v1.1.docx", "url": "https://drive.google.com/file/d/1LniYWvQXXPipPSD0UbdfwKmRt1DPI4tj/view", "ngay": "16/11/2026"},
+    {"sp": "VNPT HKD", "dv": "SI", "file": "Phieu_dang_ky_TMH_2027_VNPT_HKD_3.0.docx", "url": "https://drive.google.com/file/d/14vYAPMwy0OC-xghiSo5ufsjWrVu8PHfh/view", "ngay": "16/11/2026"},
+    {"sp": "VNPT BHXH", "dv": "SI", "file": "Phieu_dang_ky_TMH_2027_VNPT_BHXH_2.0.docx", "url": "https://drive.google.com/file/d/1Cgjo4UyFRC2vLhHAsXykpMXeRUrb0n79/view", "ngay": "16/11/2026"},
+    {"sp": "VNPT ĐGCB", "dv": "DAS", "file": "Phieu dang ky TMH DGCB 2027 v1.1.docx", "url": "https://drive.google.com/file/d/11xqYLA76ZXwQgpYee_6i9uCoWXSYeSsv/view", "ngay": "17/11/2026"},
+    {"sp": null, "ten": "VNPT Smart Urban", "dv": "MDS", "file": "08_VNPT Smart Urban_PĐK TMH SPDV 2027.docx", "url": "https://drive.google.com/file/d/1R2j3BzDC2eprF-Z3aeWuXEWaow6trIcw/view", "ngay": "15/11/2026"},
+    {"sp": null, "ten": "VNPT iAlert", "dv": "MDS", "file": "12_VNPT iAlert_PĐK TMH SPDV 2027.docx", "url": "https://drive.google.com/file/d/1MH_lP-5NpAZaxGszBxtHlatM-d3c1jap/view", "ngay": "15/11/2026"},
+    {"sp": null, "ten": "TTHC Assistant AI – Sàng lọc hồ sơ", "dv": "DAS (theo thư mục)", "file": "Phieu_dang_ky_TMH_SPDV_2027_TTHC_Assistant_AI_Sang_loc_ho_so.docx", "url": "https://drive.google.com/file/d/17gyaoWInJETtYSl6QDmBFnF6RD_G4HTB/view", "ngay": "17/11/2026"},
+    {"sp": null, "ten": "TTHC Assistant AI – Hỗ trợ cán bộ tiếp nhận", "dv": "DAS (theo thư mục)", "file": "Phieu_dang_ky_TMH_SPDV_2027_TTHC_Assistant_AI_ho_tro_can_bo_tiep.docx", "url": "https://drive.google.com/file/d/1l-FtvHlaF1PJDZC9IxP7InpEQTsq9WHp/view", "ngay": "17/11/2026"}
+  ]
+}
